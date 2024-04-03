@@ -25,7 +25,8 @@
         </div>
 
         <div>
-          <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+          <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            <LockClosedIcon class="w-6 h-6 mr-2" />Sign in</button>
         </div>
       </form>
       
@@ -34,6 +35,7 @@
 
 
 <script setup>
+import {LockClosedIcon} from '@heroicons/vue/solid'
     import GuestLayout from '../components/GuestLayout.vue';
 </script>
 

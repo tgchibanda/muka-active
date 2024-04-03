@@ -3,9 +3,7 @@
   <div class="flex min-h-full">
 
     <!-- Side Bar -->
-    <div class="w-[200px] bg-blue-700">
-      Side bar
-    </div>
+      <Sidebar />
     <!-- End Side Bar -->
 
     <div class="flex-1">
@@ -29,7 +27,7 @@
 
 
 <script setup>
-
+import Sidebar from "./SideBar.vue";
 const {title} =  defineProps({
     title: String
 })

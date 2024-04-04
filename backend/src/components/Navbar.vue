@@ -5,7 +5,7 @@
           <MenuIcon class="w-6"></MenuIcon>
         </button>
           <Menu as="div" class="relative inline-block text-left">
-          <MenuButton class="flex items-center">
+          <MenuButton class="flex items-center bg-white">
             <img src="https://randomuser.me/api/portraits/women/43.jpg" class="rounded-full w-8 mr-2">
             <small>John Doe</small>
             <ChevronDownIcon
@@ -29,13 +29,13 @@
               <MenuItem v-slot="{ active }">
                 <button
                   :class="[
-                    active ? 'bg-violet-500 text-white' : 'text-gray-900',
+                    active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                     'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                   ]"
                 >
                   <UserIcon
                     :active="active"
-                    class="mr-2 h-5 w-5 text-violet-400"
+                    class="mr-2 h-5 w-5 text-indigo-400"
                     aria-hidden="true"
                   />
                   Profile
@@ -44,7 +44,7 @@
               <MenuItem v-slot="{ active }">
                 <button
                   :class="[
-                    active ? 'bg-violet-500 text-white' : 'text-gray-900',
+                    active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                     'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                   ]"
                 >

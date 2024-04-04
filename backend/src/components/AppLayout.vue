@@ -8,7 +8,7 @@
 
     <div class="flex-1">
 
-      <TopHeader @toggle-sidebar="toggleSidebar"></TopHeader>
+      <Navbar @toggle-sidebar="toggleSidebar"></Navbar>
 
       <!-- Content -->
       <main class="h-screen p-6 bg-gray-200">
@@ -26,9 +26,9 @@
 
 
 <script setup>
-import {ref} from "vue"
+import {ref, onMounted, onUnmounted} from "vue"
 import Sidebar from "./SideBar.vue";
-import TopHeader from "./TopHeader.vue";
+import Navbar from "./Navbar.vue"
 const {title} =  defineProps({
     title: String
 })
@@ -36,6 +36,24 @@ const {title} =  defineProps({
 const sidebarOpened = ref(true)
 function toggleSidebar() {
   sidebarOpened.value = !sidebarOpened.value
+}
+
+onMounted (() => {
+  handleSidebarOpened();
+  window.addEventListener('resize', handleSidebarOpened)
+})
+
+onUnmounted (() => {
+  window.removeEventListener('resize', handleSidebarOpened)
+})
+
+function handleSidebarOpened(){
+  if(window.outerWidth <= 768 ){
+    sidebarOpened.value = false
+  }
+  else {
+    sidebarOpened.value = true
+  }
 }
 </script>
 

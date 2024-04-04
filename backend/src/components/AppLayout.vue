@@ -42,7 +42,6 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('resize', updateSidebarState)
 })
-
 </script>
 
 <style scoped>

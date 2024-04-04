@@ -14,6 +14,7 @@ const routes = [
     component: AppLayout,
     meta: {
       requiresAuth: true
+
     },
     children: [
       {

@@ -1,13 +1,14 @@
 <template>
- <h1>Dashboard Form</h1>
-</template>
-
-<script>
-export default {
-    name: 'Dashboard'
-}
-</script>
-
-<style scoped>
-
-</style>
+    <h1>Dashboard</h1>
+  </template>
+  
+  <script>
+  export default {
+    name: "Dashboard"
+  }
+  </script>
+  
+  <style scoped>
+  
+  </style>
+  

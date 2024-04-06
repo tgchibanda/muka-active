@@ -7,14 +7,14 @@ const axiosClient = axios.create({
 })
 
 axiosClient.interceptors.request.use(config => {
-    config.headers.Authorization = `Bearer ${store.state.user.token}`
-    return config;
+ config.headers.Authorization = `Bearer ${store.state.user.token}`
+ return config;
 })
 
 axiosClient.interceptors.response.use(response => {
-    return response;
+ return response;
 }, error => {
-    if(error.response.status === 401){
+    if (error.response.status === 401) {
         store.commit('setToken', null)
         router.push({name: 'login'})
     }

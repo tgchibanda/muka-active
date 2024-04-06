@@ -18,7 +18,7 @@ axiosClient.interceptors.response.use(response => {
         store.commit('setToken', null)
         router.push({name: 'login'})
     }
-    console.error(error);
+    throw error;
 })
 
 export default axiosClient;

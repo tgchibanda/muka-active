@@ -11,9 +11,9 @@ axiosClient.interceptors.request.use(config => {
     return config;
 })
 
-axiosClient.interceptors.response.use(response=>{
+axiosClient.interceptors.response.use(response => {
     return response;
-}, error =>{
+}, error => {
     if(error.response.status === 401){
         store.commit('setToken', null)
         router.push({name: 'login'})

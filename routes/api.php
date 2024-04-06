@@ -12,4 +12,4 @@ Route::middleware('auth:sanctum', 'admin')
         Route::post('/logout',[\App\Http\Controllers\AuthController::class, 'logout']);
     });
 
-    Route::post('/login',[\App\Http\Controllers\AuthController::class, 'login']);
+Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);

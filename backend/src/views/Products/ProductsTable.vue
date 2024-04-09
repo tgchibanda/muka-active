@@ -44,10 +44,11 @@
     </thead>
     <tbody v-if="products.loading">
       <tr>
-        <td colspan="5"><Spinner class="my-4" v-if="products.loading"/></td>
+        <td colspan="6"><Spinner class="my-4" v-if="products.loading"/></td>
       </tr>
     </tbody>
     <tbody v-else>
+      <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
     <tr v-for="product of products.data">
       <td class="border-b p-2 ">{{ product.id }}</td>
       <td class="border-b p-2 ">

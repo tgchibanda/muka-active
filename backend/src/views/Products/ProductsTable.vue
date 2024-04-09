@@ -54,7 +54,7 @@
         {{ product.title }}
       </td>
       <td class="border-b p-2">
-        {{ product.price }}
+        {{ product.image }}
       </td>
       <td class="border-b p-2 ">
         {{ product.updated_at }}

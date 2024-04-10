@@ -37,7 +37,7 @@
       <TableHeaderCell @click="sortProduct" class="border-b-2 p-2 text-left" field="updated_at" :sort-field="sortField" :sort-direction="sortDirection">
         Last Updated At
       </TableHeaderCell>
-      <TableHeaderCell class="border-b-2 p-2 text-left" field="actions">
+      <TableHeaderCell field="actions">
         Actions
       </TableHeaderCell>
     </tr>
@@ -63,7 +63,7 @@
         {{ product.updated_at }}
       </td>
       <td>
-        <Menu as ="div" class=""relative inline-block text-left>
+        <Menu as ="div" class="relative inline-block text-left">
           <div>
         <MenuButton
           class="inline-flex items-center justify-center w-full rounded-full h-10 bg-black bg-opacity-0"

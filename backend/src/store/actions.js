@@ -69,8 +69,10 @@ export function updateProduct({commit}, product) {
     form.append('price', product.price);
     form.append('_method', 'PUT');
     product = form;
+  } else {
+    product._method = 'PUT';
   }
-  return axiosClient.put(`/products/${id}`, product)
+  return axiosClient.post(`/products/${id}`, product)
 }
 
 export function deleteProduct({commit}, id) {

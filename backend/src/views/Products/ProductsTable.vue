@@ -37,7 +37,7 @@
       <TableHeaderCell @click="sortProduct" class="border-b-2 p-2 text-left" field="updated_at" :sort-field="sortField" :sort-direction="sortDirection">
         Last Updated At
       </TableHeaderCell>
-      <TableHeaderCell class="border-b-2 p-2 text-left" field="actions">
+      <TableHeaderCell field="actions">
         Actions
       </TableHeaderCell>
     </tr>

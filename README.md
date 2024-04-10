@@ -11,3 +11,5 @@ Installation
 7. run php artisan storage:link
 8. run php artisan migrate
 9. run php artisan serve
+10. got to the backend folder and run npm install
+11. run npm run dev

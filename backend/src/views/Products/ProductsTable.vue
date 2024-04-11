@@ -62,7 +62,9 @@
       <td class="border-b p-2">
         {{ product.updated_at }}
       </td>
+
       <td class="border-b p-2">
+
         <Menu as ="div" class="relative inline-block text-left">
           <div>
         <MenuButton

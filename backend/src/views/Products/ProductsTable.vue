@@ -48,7 +48,7 @@
       </tr>
     </tbody>
     <tbody v-else>
-    <tr v-for="(product, index) of products.data" class="animate-fade-in-down" :style="{'animation-delay': `${index*0.05}s`}">
+    <tr v-for="(product, index) of products.data" class="animate-fade-in" :style="{'animation-delay': `${index*0.05}s`}">
       <td class="border-b p-2 ">{{ product.id }}</td>
       <td class="border-b p-2 ">
         <img class="w-16" :src="product.image_url" :alt="product.title">

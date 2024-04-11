@@ -59,10 +59,10 @@
       <td class="border-b p-2">
         {{ product.price }}
       </td>
-      <td class="border-b p-2 ">
+      <td class="border-b p-2">
         {{ product.updated_at }}
       </td>
-      <td>
+      <td class="border-b p-2">
         <Menu as ="div" class="relative inline-block text-left">
           <div>
         <MenuButton

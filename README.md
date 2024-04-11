@@ -1,7 +1,3 @@
-This is an online store.
-
-Installation
-
 1. Clone project
 2. Get into the folder
 3. run composer install

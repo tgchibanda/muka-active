@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
@@ -9,6 +9,7 @@ use App\Http\Resources\ProductResource;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {

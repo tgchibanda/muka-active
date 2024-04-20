@@ -22,4 +22,8 @@ class Product extends Model
         ->generateSlugsFrom('title')
         ->saveSlugsTo('slug');
     }
+
+    public function getReuteKeyName(){
+        return 'slug';
+    }
 }

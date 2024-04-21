@@ -14,6 +14,7 @@ Route::middleware('guestOrVerified')->group(function () {
         Route::get('/add{product:sluh}', [CartController::class, 'add'])->name('add');
         Route::get('/remove{product:sluh}', [CartController::class, 'remove'])->name('remove');
         Route::get('/update-quantity{product:sluh}', [CartController::class, 'updateQuantity'])->name('update-quantity');
+    });
 });
 
 Route::get('/dashboard', function () {

@@ -57,6 +57,7 @@ document.addEventListener("alpine:init", () => {
       return {
         product,
         addToCart(quantity = 1) {
+          console.log('Test function called');
           post(this.product.addToCartUrl, {quantity})
           .then(result => {
             this.$dispatch('cart-change', {count: result.count})

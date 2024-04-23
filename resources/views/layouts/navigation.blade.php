@@ -1,7 +1,7 @@
 <header
     x-data="{
         mobileMenuOpen: false,
-        cartItemsCount: {{ \App\Http\Helpers\Cart::getCartItemsCount() }},
+        cartItemsCount: {{ \App\Http\Helpers\Cart::getCartItemsCount() }}, 
     }"
     @cart-change.window="cartItemsCount = $event.detail.count"
     class="flex justify-between bg-slate-800 shadow-md text-white"

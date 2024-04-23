@@ -88,7 +88,7 @@ class CartController extends Controller
                     break;
                 }
             }
-            Cookie::queue('cart_items', json_decode($cartItems), 60 * 24 * 30);
+            Cookie::queue('cart_items', json_encode($cartItems), 60 * 24 * 30);
             return response([
                 'count' => Cart::getCountFromItems($cartItems)
             ]);

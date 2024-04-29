@@ -48,6 +48,6 @@ class RegisteredUserController extends Controller
 
         Cart::moveCartItemsIntoDb();
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('home', absolute: false));
     }
 }

@@ -7,14 +7,16 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(){
-        $products = Product::query()->orderBy('updated_at', 'desc')->paginate(4);
-        return view('product.index' , [
+    public function index()
+    {
+        $products = Product::query()->orderBy('updated_at', 'desc')->paginate(5);
+        return view('product.index', [
             'products' => $products
         ]);
     }
 
-    public function view(Product $product){
+    public function view(Product $product)
+    {
         return view('product.view', ['product' => $product]);
     }
 }

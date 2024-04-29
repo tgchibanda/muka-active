@@ -1,7 +1,7 @@
 1. Clone project
 2. Get into the folder
 3. run composer install
-4. rename .env.example for both front and backend
+4. rename .env.example for both front and backend then run npm install for both folders as well
 5. create the mysql db
 6. run php artisan key:generate
 7. run php artisan storage:link

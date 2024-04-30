@@ -41,7 +41,7 @@
                         }
                         return null;
                     }
-                }" action="" method="post">
+                }" action="{{ route('profile.update') }}" method="post">
                     @csrf
                     <h2 class="text-xl font-semibold mb-2">Profile Details</h2>
                     <div class="grid grid-cols-2 gap-3 mb-3">
@@ -250,7 +250,7 @@
                 </form>
             </div>
             <div class="bg-white p-3 shadow rounded-lg">
-                <form action="" method="post">
+                <form action="{{route('profile_password.update')}}" method="post">
                     @csrf
                     <h2 class="text-xl font-semibold mb-2">Update Password</h2>
                     <div class="mb-3">

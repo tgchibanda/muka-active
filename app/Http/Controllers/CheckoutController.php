@@ -10,6 +10,7 @@ use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\OrderItem;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CheckoutController extends Controller
 {
@@ -105,28 +106,25 @@ class CheckoutController extends Controller
                 return view('checkout.failure',  ['message' => 'Invalid session ID']);
             }
 
-            $payment = Payment::query()->where(['session_id' => $checkout_session->id, 'status' => PaymentStatus::Pending])->first();
-
-            if(!$payment){
-                return view('checkout.failure', ['message' => 'Payment does not exist']);
+            $payment = Payment::query()
+                ->where(['session_id' => $session_id])
+                ->whereIn('status', [PaymentStatus::Pending, PaymentStatus::Paid])
+                ->first();
+            if (!$payment) {
+                throw new NotFoundHttpException();
             }
-
-            $payment->status = PaymentStatus::Paid;
-            $payment->update();
-
-            $order = $payment->order;
-            $order->status = OrderStatus::Paid;
-            $order->update();
-
-
+            if ($payment->status === PaymentStatus::Pending->value) {
+                $this->updateOrderAndSession($payment);
+            }
             $customer = \Stripe\Customer::retrieve($checkout_session->customer);
-            
             return view('checkout.success', compact('customer'));
-
-        } catch (\Exception $e){
+        } catch (NotFoundHttpException $e) {
+            throw $e;
+        } catch (\Exception $e) {
             return view('checkout.failure', ['message' => $e->getMessage()]);
         }
     }
+
     public function failure(Request $request)
     {
         return view('checkout.failure', ['message' => ""]);

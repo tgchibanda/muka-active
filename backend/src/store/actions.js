@@ -46,6 +46,27 @@ export function getProducts({commit, state}, {url = null, search = '', per_page,
     })
 }
 
+export function getOrders({commit, state}, {url = null, search = '', per_page, sort_field, sort_direction} = {}) {
+  commit('setOrders', [true])
+  url = url || '/orders'
+  const params = {
+    per_page: state.orders.limit,
+  }
+  return axiosClient.get(url, {
+    params: {
+      ...params,
+      search, per_page, sort_field, sort_direction
+    }
+  })
+    .then((response) => {
+      commit('setOrders', [false, response.data])
+      console.log(response.data) // Delete this
+    })
+    .catch(() => {
+      commit('setOrders', [false])
+    })
+}
+
 export function  createProduct({commit}, product) {
   if (product.image instanceof File) {
     const form = new FormData();
@@ -79,6 +100,10 @@ export function deleteProduct({commit}, id) {
     return axiosClient.delete(`/products/${id}`)
   }
 
-export function getProduct({}, id) {
-  return axiosClient.get(`/products/${id}`)
-}
+  export function getProduct({}, id) {
+    return axiosClient.get(`/products/${id}`)
+  }
+
+  export function getOrder({}, id) {
+    return axiosClient.get(`/orders/${id}`)
+  }

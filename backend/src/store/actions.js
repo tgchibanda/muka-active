@@ -46,6 +46,27 @@ export function getProducts({commit, state}, {url = null, search = '', per_page,
     })
 }
 
+export function getUsers({commit, state}, {url = null, search = '', per_page, sort_field, sort_direction} = {}) {
+  commit('setUsers', [true])
+  url = url || '/users'
+  const params = {
+    per_page: state.users.limit,
+  }
+  return axiosClient.get(url, {
+    params: {
+      ...params,
+      search, per_page, sort_field, sort_direction
+    }
+  })
+    .then((response) => {
+      commit('setUsers', [false, response.data])
+    })
+    .catch(() => {
+      commit('setUsers', [false])
+    })
+}
+
+
 export function getOrders({commit, state}, {url = null, search = '', per_page, sort_field, sort_direction} = {}) {
   commit('setOrders', [true])
   url = url || '/orders'
@@ -79,6 +100,10 @@ export function  createProduct({commit}, product) {
   return axiosClient.post('/products', product)
 }
 
+export function  createUser({commit}, user) {
+  return axiosClient.post('/users', user)
+}
+
 export function updateProduct({commit}, product) {
   const id = product.id
   if (product.image instanceof File) {
@@ -96,14 +121,23 @@ export function updateProduct({commit}, product) {
   return axiosClient.post(`/products/${id}`, product)
 }
 
+export function updateUser({commit}, user) {
+  return axiosClient.put(`/users/${user.id}`, user)
+}
+
 export function deleteProduct({commit}, id) {
-    return axiosClient.delete(`/products/${id}`)
-  }
+  return axiosClient.delete(`/products/${id}`)
+}
 
-  export function getProduct({}, id) {
-    return axiosClient.get(`/products/${id}`)
-  }
+export function deleteUser({commit}, id) {
+  return axiosClient.delete(`/users/${id}`)
+}
 
-  export function getOrder({}, id) {
-    return axiosClient.get(`/orders/${id}`)
-  }
+export function getProduct({}, id) {
+  return axiosClient.get(`/products/${id}`)
+}
+
+
+export function getOrder({}, id) {
+  return axiosClient.get(`/orders/${id}`)
+}

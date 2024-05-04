@@ -8,9 +8,12 @@ use App\Enums\OrderStatus;
 use App\Enums\PaymentStatus;
 use App\Models\CartItem;
 use App\Models\Order;
+use App\Models\User;
 use App\Models\Payment;
 use App\Models\OrderItem;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Mail\NewOrderEmail;
 
 class CheckoutController extends Controller
 {
@@ -88,7 +91,7 @@ class CheckoutController extends Controller
           Payment::create($paymentData);
 
           CartItem::where(['user_id' => $user->id])->delete();
-
+          
           return redirect($checkout_session->url);
     }
 
@@ -169,7 +172,7 @@ class CheckoutController extends Controller
     {
         \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
 
-        $endpoint_secret = 'whsec_e1170dcf374ca78b3ebfdc75e066e2ce865e1a7c8b8e401f2ec657f0b34ad510';
+        $endpoint_secret = env('WEBHOOK_SECRET_KEY');
 
         $payload = @file_get_contents('php://input');
         $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
@@ -209,13 +212,19 @@ class CheckoutController extends Controller
 
     private function updateOrderAndSession(Payment $payment)
     {
-        $payment->status = PaymentStatus::Paid;
+        $payment->status = PaymentStatus::Paid->value;
         $payment->update();
 
         $order = $payment->order;
 
-        $order->status = OrderStatus::Paid;
+        $order->status = OrderStatus::Paid->value;
         $order->update();
+
+        $adminUsers = User::where('is_admin', 1)->get();
+
+        foreach ([...$adminUsers, $order->user] as $user) {
+            Mail::to($user)->send(new NewOrderEmail($order, (bool)$user->is_admin));
+        }
 
     }
 }

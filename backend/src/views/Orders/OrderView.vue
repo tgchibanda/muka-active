@@ -5,7 +5,7 @@
       <div>
         <h2 class="flex justify-between items-center text-xl font-semibold pb-2 border-b border-gray-300">
           Order Details
-          
+          <OrderStatus :order="order" />
         </h2>
         <table>
           <tbody>
@@ -117,6 +117,7 @@
   import store from "../../store";
   import {useRoute} from "vue-router";
   import axiosClient from "../../axios.js";
+    import OrderStatus from "./OrderStatus.vue";
   
   const route = useRoute()
   

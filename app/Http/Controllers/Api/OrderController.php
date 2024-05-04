@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\OrderStatus;
 use Illuminate\Http\Request;
 use App\Models\Api\Order;
 use App\Http\Resources\OrderListResource;
@@ -30,6 +31,12 @@ class OrderController extends Controller
     }
 
     public function getStatuses(){
-        
+        return OrderStatus::getStatuses();
+    }
+
+    public function changeStatus(Order $order, $status){
+        $order->status = $status;
+        $order->save();
+        return response('', 200);
     }
 }

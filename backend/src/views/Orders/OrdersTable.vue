@@ -62,7 +62,7 @@
           </td>  
 
           <td class="border-b p-2 ">
-            {{ order.status }}
+            <OrderStatus :order="order" />
           </td>
           <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis">
             {{ order.created_at }}
@@ -123,6 +123,7 @@
     import {PRODUCTS_PER_PAGE} from "../../constants.js";
     import {Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/vue';
     import {DotsVerticalIcon, PencilIcon, TrashIcon} from '@heroicons/vue/outline';
+    import OrderStatus from "./OrderStatus.vue";
     
     const emit = defineEmits(['clickEdit']);
     const perPage = ref(PRODUCTS_PER_PAGE)

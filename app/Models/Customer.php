@@ -25,12 +25,12 @@ class Customer extends Model
         return $this->hasOne(CustomerAddress::class, 'customer_id', 'user_id');
     }
 
-    public function shippingAddresses(): HasOne
+    public function shippingAddress(): HasOne
     {
         return $this->_getAddresses()->where('type', '=', AddressType::Shipping->value);
     }
 
-    public function billingAddresses(): HasOne
+    public function billingAddress(): HasOne
     {
         return $this->_getAddresses()->where('type', '=', AddressType::Billing->value);
     }

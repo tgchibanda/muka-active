@@ -182,7 +182,6 @@ export function getCustomer({}, user_id) {
   return axiosClient.get(`/customers/${user_id}`)
 }
 
-
 export function getOrder({}, id) {
   return axiosClient.get(`/orders/${id}`)
 }

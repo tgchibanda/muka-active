@@ -36,7 +36,7 @@ class CustomerResource extends JsonResource
                 'city' => $shipping->city,
                 'state' => $shipping->state,
                 'zipcode' => $shipping->zipcode,
-                'country' => $shipping->country->name,
+                'country' => $shipping->country->code,
             ],
             'billingAddress' => [
                 'id' => $billing->id,
@@ -45,7 +45,7 @@ class CustomerResource extends JsonResource
                 'city' => $billing->city,
                 'state' => $billing->state,
                 'zipcode' => $billing->zipcode,
-                'country' => $billing->country->name,
+                'country' => $billing->country->code,
             ],
         ];
     }

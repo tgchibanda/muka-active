@@ -43,6 +43,7 @@ const state = {
       limit: null,
       total: null
     },
+    countries: [],
     toast: {
       show: false,
       message: '',

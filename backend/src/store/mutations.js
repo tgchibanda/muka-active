@@ -88,3 +88,6 @@ export function showToast(state, message) {
     state.toast.show = false;
     state.toast.message = '';
   }
+  export function setCountries(state, countries) {
+    state.countries = countries.data;
+  }

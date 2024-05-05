@@ -9,6 +9,8 @@ use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Resources\CustomerResource;
 use App\Http\Resources\CustomerListResource;
 use App\Http\Controllers\Controller;
+use App\Models\Country;
+use App\Http\Resources\CountryResource;
 
 class CustomerController extends Controller
 {
@@ -77,6 +79,11 @@ class CustomerController extends Controller
 
         return response()->noContent();
 
+    }
+
+    public function countries()
+    {
+        return CountryResource::collection(Country::query()->orderBy('name', 'asc')->get());
     }
 
 }

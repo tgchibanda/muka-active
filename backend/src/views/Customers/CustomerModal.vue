@@ -74,11 +74,11 @@
                         <CustomInput v-model="customer.billingAddress.city" label="City"/>
                         <CustomInput v-model="customer.billingAddress.zipcode" label="Zip Code"/>
 
-                         <pre>{{ billingCountry }}</pre> 
-                        <CustomInput type="select" :select-options="countries" v-model="customer.billingAddress.country_code" label="Country"/>
-                      <!--  <CustomInput v-if="!billingCountry.states" v-model="customer.billingAddress.state" label="State"/>
+                         <!-- <pre>Output is: {{ billingCountry }}</pre> -->
+                        <CustomInput type="select" :select-options="countries" v-model="customer.billingAddress.country_code" label="country_code"/>
+                        <CustomInput v-if="!billingCountry.states" v-model="customer.billingAddress.state" label="State"/>
                         <CustomInput v-else type="select" :select-options="billingStateOptions" v-model="customer.billingAddress.state" label="State"/>
-                      -->
+                      
                       </div>
                     </div>
 
@@ -92,10 +92,10 @@
                         <CustomInput  v-model="customer.shippingAddress.zipcode" label="Zip Code"/>
 
                         <!-- <pre>{{ shippingCountry }}</pre> -->
-                        <CustomInput type="select" :select-options="countries" v-model="customer.shippingAddress.country_code" label="Country"/>
-                       <!-- <CustomInput v-if="!shippingCountry.states" v-model="customer.shippingAddress.state" label="State"/>
+                        <CustomInput type="select" :select-options="countries" v-model="customer.shippingAddress.country_code" label="country_code"/>
+                       <CustomInput v-if="!shippingCountry.states" v-model="customer.shippingAddress.state" label="State"/>
                         <CustomInput v-else type="select" :select-options="shippingStateOptions" v-model="customer.shippingAddress.state" label="State"/>
-                      -->
+                      
                     </div> 
                     </div>
 </div>
@@ -153,6 +153,8 @@ const customer =ref({
   email: props.customer.email,
   phone: props.customer.phone,
   status: props.customer.status,
+  shippingAddress: {},
+  billingAddress: {},
 })
 
 const emit = defineEmits(['update:modelValue', 'close'])

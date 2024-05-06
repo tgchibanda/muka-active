@@ -8,6 +8,7 @@ export function getUser({commit}, data) {
     })
 }
 
+
 export function login({commit}, data) {
   return axiosClient.post('/login', data)
     .then(({data}) => {
@@ -23,6 +24,14 @@ export function logout({commit}) {
       commit('setToken', null)
 
       return response;
+    })
+}
+
+export function getCountries({commit}) {
+  return axiosClient.get('countries')
+    .then(({data}) => {
+      console.log(data)
+      commit('setCountries', data)
     })
 }
 
@@ -66,6 +75,26 @@ export function getUsers({commit, state}, {url = null, search = '', per_page, so
     })
 }
 
+export function getCustomers({commit, state}, {url = null, search = '', per_page, sort_field, sort_direction} = {}) {
+  commit('setCustomers', [true])
+  url = url || '/customers'
+  const params = {
+    per_page: state.customers.limit,
+  }
+  return axiosClient.get(url, {
+    params: {
+      ...params,
+      search, per_page, sort_field, sort_direction
+    }
+  })
+    .then((response) => {
+      commit('setCustomers', [false, response.data])
+    })
+    .catch(() => {
+      commit('setCustomers', [false])
+    })
+}
+
 
 export function getOrders({commit, state}, {url = null, search = '', per_page, sort_field, sort_direction} = {}) {
   commit('setOrders', [true])
@@ -104,6 +133,10 @@ export function  createUser({commit}, user) {
   return axiosClient.post('/users', user)
 }
 
+export function  createCustomer({commit}, customer) {
+  return axiosClient.post('/customers', customer)
+}
+
 export function updateProduct({commit}, product) {
   const id = product.id
   if (product.image instanceof File) {
@@ -125,6 +158,10 @@ export function updateUser({commit}, user) {
   return axiosClient.put(`/users/${user.id}`, user)
 }
 
+export function updateCustomer({commit}, customer) {
+  return axiosClient.put(`/customers/${customer.user_id}`, customer)
+}
+
 export function deleteProduct({commit}, id) {
   return axiosClient.delete(`/products/${id}`)
 }
@@ -133,10 +170,17 @@ export function deleteUser({commit}, id) {
   return axiosClient.delete(`/users/${id}`)
 }
 
+export function deleteCustomer({commit}, id) {
+  return axiosClient.delete(`/customers/${id}`)
+}
+
 export function getProduct({}, id) {
   return axiosClient.get(`/products/${id}`)
 }
 
+export function getCustomer({}, user_id) {
+  return axiosClient.get(`/customers/${user_id}`)
+}
 
 export function getOrder({}, id) {
   return axiosClient.get(`/orders/${id}`)

@@ -33,7 +33,7 @@
                        class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"/>
               <header class="py-3 px-4 flex justify-between items-center">
                 <DialogTitle as="h3" class="text-lg leading-6 font-medium text-gray-900">
-                  {{ customer.user_id ? `Update customer: "${props.customer.first_name}"` : 'Create new Customer' }}
+                  {{ customer.user_id ? `Update customer: "${customer.first_name}"` : 'Create new Customer' }}
                 </DialogTitle>
                 <button
                   @click="closeModal()"

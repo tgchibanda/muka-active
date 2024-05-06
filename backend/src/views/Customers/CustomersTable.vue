@@ -37,6 +37,9 @@
         <TableHeaderCell @click="sortCustomer" class="border-b-2 p-2 text-left" field="updated_at">
           Registered On
         </TableHeaderCell>
+        <TableHeaderCell @click="sortCustomer" class="border-b-2 p-2 text-left" field="updated_at">
+          Status
+        </TableHeaderCell>
         <TableHeaderCell field="actions">
           Actions
         </TableHeaderCell>
@@ -61,6 +64,9 @@
         </td>
         <td class="border-b p-2">
           {{ customer.created_at }}
+        </td>
+        <td class="border-b p-2">
+          {{ customer.status }}
         </td>
   
         <td class="border-b p-2">

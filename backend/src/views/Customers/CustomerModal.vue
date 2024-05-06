@@ -203,7 +203,7 @@ function closeModal() {
 function onSubmit() {
   loading.value = true
   if (customer.value.user_id) {
-    console.log(customer.value.status);
+    //console.log(customer.value.status);
     customer.value.status = !!customer.value.status
     store.dispatch('updateCustomer', customer.value)
       .then(response => {

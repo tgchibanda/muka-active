@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Enums\AddressType;
 use App\Models\Api\Customer;
+use App\Enums\CustomerStatus;
 use App\Models\CustomerAddress;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Resources\CustomerResource;
@@ -11,6 +12,7 @@ use App\Http\Resources\CustomerListResource;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Http\Resources\CountryResource;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -24,10 +26,14 @@ class CustomerController extends Controller
         $sortField = request('sort_field', 'updated_at');
         $sortDirection = request('sort_direction', 'desc');
         $query = Customer::query();
-        $query->orderBy($sortField, $sortDirection);
+        $query->orderBy("customers.$sortField", $sortDirection);
         if ($search){
-            $query->where('first_name', 'like', "%{$search}%")
-            ->orWHere('first_name', 'like', "%{$search}%");
+            $query
+            ->where(DB::raw("CONCAT(first_name, ' ', last_name)"), 'like', "%{$search}%")
+            ->join('users', 'customers.user_id', '=', 'users.id')
+            ->orWhere('users.email', 'like', "%{$search}%")
+            ->orWhere('customers.phone', 'like', "%{$search}%")
+        ;
         }
         return CustomerListResource::collection($query->paginate($perPage));
     }
@@ -47,7 +53,7 @@ class CustomerController extends Controller
     {
         $customerData = $request->validated();
         $customerData['updated_by'] = $request->user()->id;
-        $customerData['status'] = $customerData['status'];
+        $customerData['status'] = $customerData['status'] ? CustomerStatus::Active->value : CustomerStatus::Disabled->value;
         $shippingData = $customerData['shippingAddress'];
         $billingData = $customerData['billingAddress'];
 

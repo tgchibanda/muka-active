@@ -13,7 +13,7 @@ import store from "../../store/index.js";
 import {ref} from "vue";
 
 const DEFAULT_EMPTRY_OBJECT = {
-  
+
 }
 
 

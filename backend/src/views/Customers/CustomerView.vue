@@ -95,7 +95,7 @@ const shippingStateOptions = computed(() => {
 
 function onSubmit() {
   loading.value = true
-  if (customer.value.id) {
+  if (customer.value.user_id) {
     console.log(customer.value.status);
     customer.value.status = !!customer.value.status
     store.dispatch('updateCustomer', customer.value)
@@ -119,7 +119,7 @@ function onSubmit() {
       })
       .catch(err => {
         loading.value = false;
-        debugger;
+        //debugger;
       })
   }
 }

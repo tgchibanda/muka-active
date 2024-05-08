@@ -20,7 +20,7 @@ class ProductController extends Controller
     {
         $search = request('search', false);
         $perPage = request('per_page', false);
-        $sortField = request('sort_field', 'updated_at');
+        $sortField = request('sort_field', 'created_at');
         $sortDirection = request('sort_direction', 'desc');
         $query = Product::query();
         $query->orderBy($sortField, $sortDirection);

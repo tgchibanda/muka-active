@@ -1,17 +1,15 @@
 <script>
-import { defineComponent, h } from 'vue'
+import {defineComponent, h} from 'vue'
+import {Bar} from 'vue-chartjs'
+import {Chart as ChartJS, 
+    Title, 
+    Tooltip,
+     Legend, 
+     BarElement, 
+     CategoryScale, 
+     LinearScale} from 'chart.js'
 
-import { Bar } from 'vue-chartjs'
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement,
-  CategoryScale
-} from 'chart.js'
-
-ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale)
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale)
   
   
   export default defineComponent ({
@@ -71,7 +69,6 @@ return () =>
 })
 
 </script>
-
 <style scoped>
 
 </style>

@@ -7,6 +7,7 @@ import Users from "../views/Users/Users.vue";
 import Customers from "../views/Customers/Customers.vue";
 import Orders from "../views/Orders/Orders.vue";
 import OrderView from "../views/Orders/OrderView.vue";
+import CustomerView from "../views/Customers/CustomerView.vue";
 import RequestPassword from "../views/RequestPassword.vue";
 import ResetPassword from "../views/ResetPassword.vue";
 import store from "../store";
@@ -50,6 +51,11 @@ const routes = [
         path: 'orders/:id',
         name: 'app.orders.view',
         component: OrderView
+      },
+      {
+        path: 'customers/:id',
+        name: 'app.customers.view',
+        component: CustomerView
       }
     ]
   },

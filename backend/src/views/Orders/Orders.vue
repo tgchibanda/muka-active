@@ -7,8 +7,6 @@
   
   <script setup>
   import OrdersTable from "./OrdersTable.vue";
-  import store from "../../store/index.js";
-  import {ref} from "vue";
 
   
   //const orders = computed(()=>store.state.orders);

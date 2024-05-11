@@ -19,7 +19,9 @@ class OrderController extends Controller
         $perPage = request('per_page', false);
         $sortField = request('sort_field', 'updated_at');
         $sortDirection = request('sort_direction', 'desc');
-        $query = Order::query();
+        $query = Order::query()
+                    ->withCount('items')
+                    ->with('user.customer');
         $query->orderBy($sortField, $sortDirection);
         if ($search){
             $query->where('id', 'like', "%{$search}%");
@@ -29,6 +31,7 @@ class OrderController extends Controller
 
     public function view(Order $order)
     {
+        $order->load('items.product');
         return new OrderResource($order);
     }
 

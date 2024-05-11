@@ -14,6 +14,8 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Http\Helpers\Cart;
 use App\Models\Customer;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class RegisteredUserController extends Controller
 {
@@ -38,26 +40,30 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        event(new Registered($user));
-
-        $customer = new Customer();
-        $names = explode(" ", $user->name);
-        $customer->user_id = $user->id;
-        $customer->first_name = $names[0];
-        $customer->last_name = $names[1] ?? '';
-        $customer->status = CustomerStatus::Active;
-        $customer->save();
-
-
-
-        Auth::login($user);
-
+        DB::beginTransaction();
+        try{
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+    
+            event(new Registered($user));
+    
+            $customer = new Customer();
+            $names = explode(" ", $user->name);
+            $customer->user_id = $user->id;
+            $customer->first_name = $names[0];
+            $customer->last_name = $names[1] ?? '';
+            $customer->status = CustomerStatus::Active;
+            $customer->save();
+            Auth::login($user);
+        } catch(\Exception $e) {
+            DB::rollBack();
+            Log::critical(__METHOD__ . ' method not working.' . $e->getMessage());
+            return redirect()->back()->withInput()->withErrors(['email' => 'Unable to register right now.']);
+        }        
+        DB::commit();
         Cart::moveCartItemsIntoDb();
 
         return redirect(route('home', absolute: false));

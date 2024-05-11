@@ -147,7 +147,7 @@ export function updateProduct({commit}, product) {
     form.append('title', product.title);
     form.append('image', product.image);
     form.append('description', product.description || '');
-    form.append('published', product.published ? '1' : '0');
+    form.append('published', product.published ? 1 : 0);
     form.append('price', product.price);
     form.append('_method', 'PUT');
     product = form;

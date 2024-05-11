@@ -119,12 +119,13 @@ export function getOrders({commit, state}, {url = null, search = '', per_page, s
 
 export function  createProduct({commit}, product) {
   if (product.image instanceof File) {
+    // debugger;
     const form = new FormData();
     form.append('title', product.title);
     form.append('image', product.image);
-    form.append('description', product.description);
-    form.append('price', product.price);;
-    form.append('published', product.published);
+    form.append('description', product.description || '');
+    form.append('price', product.price);
+    form.append('published', product.published ? 1 : 0);
     product = form;
   }
   return axiosClient.post('/products', product)
@@ -145,8 +146,9 @@ export function updateProduct({commit}, product) {
     form.append('id', product.id);
     form.append('title', product.title);
     form.append('image', product.image);
-    form.append('description', product.description);
+    form.append('description', product.description || '');
     form.append('price', product.price);
+    form.append('published', product.published ? 1 : 0);
     form.append('_method', 'PUT');
     product = form;
   } else {

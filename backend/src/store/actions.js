@@ -30,7 +30,7 @@ export function logout({commit}) {
 export function getCountries({commit}) {
   return axiosClient.get('countries')
     .then(({data}) => {
-      console.log(data)
+      //console.log(data)
       commit('setCountries', data)
     })
 }

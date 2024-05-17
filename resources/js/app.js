@@ -2,7 +2,7 @@ import './bootstrap';
 
 import Alpine from 'alpinejs';
 import collapse from '@alpinejs/collapse'
-import {get, post} from "./http.js";
+import { get, post } from "./http.js";
 
 Alpine.plugin(collapse)
 
@@ -17,13 +17,15 @@ document.addEventListener("alpine:init", async () => {
     interval: null,
     timeout: null,
     message: null,
+    type: null,
     close() {
       this.visible = false;
       clearInterval(this.interval);
     },
-    show(message) {
+    show(message, type = 'success') {
       this.visible = true;
       this.message = message;
+      this.type = type;
 
       if (this.interval) {
         clearInterval(this.interval);
@@ -55,15 +57,19 @@ document.addEventListener("alpine:init", async () => {
     return {
       product,
       addToCart(quantity = 1) {
-        post(this.product.addToCartUrl, {quantity})
+        post(this.product.addToCartUrl, { quantity })
           .then(result => {
-            this.$dispatch('cart-change', {count: result.count})
+            this.$dispatch('cart-change', { count: result.count })
             this.$dispatch("notify", {
               message: "The item was added into the cart",
             });
           })
           .catch(response => {
             console.log(response);
+            this.$dispatch('notify', {
+              message: response.message || 'Server Error. Please try again.',
+              type: 'error'
+            })
           })
       },
       removeItemFromCart() {
@@ -72,7 +78,7 @@ document.addEventListener("alpine:init", async () => {
             this.$dispatch("notify", {
               message: "The item was removed from cart",
             });
-            this.$dispatch('cart-change', {count: result.count})
+            this.$dispatch('cart-change', { count: result.count })
             this.cartItems = this.cartItems.filter(p => p.id !== product.id)
           })
       },
@@ -83,6 +89,12 @@ document.addEventListener("alpine:init", async () => {
             this.$dispatch("notify", {
               message: "The item quantity was updated",
             });
+          })
+          .catch(response => {
+            this.$dispatch('notify', {
+              message: response.message || 'Server Error. Please try again.',
+              type: 'error'
+            })
           })
       },
     };

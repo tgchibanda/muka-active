@@ -10,6 +10,7 @@ use App\Http\Resources\OrderResource;
 use App\Http\Controllers\Controller;
 use App\Mail\OrderUpdateEmail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -39,11 +40,29 @@ class OrderController extends Controller
         return OrderStatus::getStatuses();
     }
 
-    public function changeStatus(Order $order, $status){
-        $order->status = $status;
-        $order->save();
+    public function changeStatus(Order $order, $status)
+    {
+        DB::beginTransaction();
+        try {
+            $order->status = $status;
+            $order->save();
 
-        Mail::to($order->user)->send(new OrderUpdateEmail($order));
+            if ($status === OrderStatus::Cancelled->value) {
+                foreach ($order->items as $item) {
+                    $product = $item->product;
+                    if ($product && $product->quantity !== null) {
+                        $product->quantity += $item->quantity;
+                        $product->save();
+                    }
+                }
+            }
+            Mail::to($order->user)->send(new OrderUpdateEmail($order));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        DB::commit();
 
         return response('', 200);
     }

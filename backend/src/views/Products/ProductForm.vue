@@ -66,6 +66,7 @@ const product = ref({
   image: null,
   description: '',
   price: null,
+  quantity: null,
   published: null,
 })
 
@@ -89,6 +90,7 @@ onMounted(() => {
 function onSubmit($event, close = false) {
   loading.value = true
   if (product.value.id) {
+    product.value.quantity = product.value.quantity || null;
     store.dispatch('updateProduct', product.value)
       .then(response => {
         loading.value = false;

@@ -91,3 +91,19 @@ export function showToast(state, message) {
   export function setCountries(state, countries) {
     state.countries = countries.data;
   }
+
+  export function setCategories(state, [loading, response = null]) {
+    if(response){
+        state.categories = {
+            data: response.data,
+            links: response.meta.links,
+            total: response.meta.total,
+            limit: response.meta.per_page,
+            from: response.meta.from,
+            to: response.meta.to,
+            page: response.meta.current_page,
+
+        }
+    }
+    state.categories.loading = loading;
+}

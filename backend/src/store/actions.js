@@ -117,12 +117,11 @@ export function getOrders({commit, state}, {url = null, search = '', per_page, s
     })
 }
 
-export function  createProduct({commit}, product) {
-  if (product.image instanceof File) {
-    // debugger;
+export function createProduct({commit}, product) {
+  if (product.images && product.images.length) {
     const form = new FormData();
     form.append('title', product.title);
-    form.append('image', product.image);
+    product.images.forEach(im => form.append('images[]', im))
     form.append('description', product.description || '');
     form.append('published', product.published ? 1 : 0);
     form.append('price', product.price);
@@ -141,18 +140,24 @@ export function  createCustomer({commit}, customer) {
 
 export function updateProduct({commit}, product) {
   const id = product.id
-  if (product.image instanceof File) {
+  if (product.images && product.images.length) {
     const form = new FormData();
     form.append('id', product.id);
     form.append('title', product.title);
-    form.append('image', product.image);
+    product.images.forEach(im => form.append(`images[${im.id}]`, im))
+    if (product.deleted_images) {
+      product.deleted_images.forEach(id => form.append('deleted_images[]', id))
+    }
+    for (let id in product.image_positions) {
+      form.append(`image_positions[${id}]`, product.image_positions[id])
+    }
     form.append('description', product.description || '');
     form.append('published', product.published ? 1 : 0);
     form.append('price', product.price);
     form.append('_method', 'PUT');
     product = form;
   } else {
-    product._method = 'PUT';
+    product._method = 'PUT'
   }
   return axiosClient.post(`/products/${id}`, product)
 }
@@ -187,4 +192,36 @@ export function getCustomer({}, user_id) {
 
 export function getOrder({}, id) {
   return axiosClient.get(`/orders/${id}`)
+}
+
+export function getCategories({commit, state}, {url = null, per_page, sort_field, sort_direction} = {}) {
+    commit('setCategories', [true])
+    url = url || '/categories'
+    const params = {
+      per_page: state.categories.limit,
+    }
+    return axiosClient.get(url, {
+      params: {
+        ...params,
+        per_page, sort_field, sort_direction
+      }
+    })
+      .then((response) => {
+        commit('setCategories', [false, response.data])
+      })
+      .catch(() => {
+        commit('setCategories', [false])
+      })
+  }
+
+export function  createCategory({commit}, category) {
+  return axiosClient.post('/categories', category)
+}
+
+export function updateCategory({commit}, category) {
+  return axiosClient.put(`/categories/${category.id}`, category)
+}
+
+export function deleteCategory({commit}, id) {
+  return axiosClient.delete(`/categories/${id}`)
 }

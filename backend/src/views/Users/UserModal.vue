@@ -139,7 +139,7 @@ function onSubmit() {
       .then(response => {
         loading.value = false;
         if (response.status === 200) {
-          // TODO show notification
+          store.commit('showToast', `User Updated`)
           store.dispatch('getUsers')
           closeModal()
         }
@@ -149,7 +149,7 @@ function onSubmit() {
       .then(response => {
         loading.value = false;
         if (response.status === 201) {
-          // TODO show notification
+          store.commit('showToast', `User created`)
           store.dispatch('getUsers')
           closeModal()
         }

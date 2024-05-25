@@ -25,19 +25,19 @@
       <TableHeaderCell @click="sortCategory" class="border-b-2 p-2 text-left" field="id" :sort-field="sortField" :sort-direction="sortDirection">
         ID
       </TableHeaderCell>
-      <TableHeaderCell @click="sortCategory" class="border-b-2 p-2 text-left" field="title" :sort-field="sortField" :sort-direction="sortDirection">
+      <TableHeaderCell @click="sortCategory" class="border-b-2 p-2 text-left" field="name" :sort-field="sortField" :sort-direction="sortDirection">
         Name
       </TableHeaderCell>
-      <TableHeaderCell @click="sortCategory" class="border-b-2 p-2 text-left" field="price" :sort-field="sortField" :sort-direction="sortDirection">
+      <TableHeaderCell @click="sortCategory" class="border-b-2 p-2 text-left" field="slug" :sort-field="sortField" :sort-direction="sortDirection">
         Slug
       </TableHeaderCell>
-      <TableHeaderCell @click="sortCategory" class="border-b-2 p-2 text-left" field="updated_at" :sort-field="sortField" :sort-direction="sortDirection">
+      <TableHeaderCell @click="sortCategory" class="border-b-2 p-2 text-left" field="active" :sort-field="sortField" :sort-direction="sortDirection">
         Active
       </TableHeaderCell>
       <TableHeaderCell @click="sortCategory" class="border-b-2 p-2 text-left" field="parent_id" :sort-field="sortField" :sort-direction="sortDirection">
         Parent
       </TableHeaderCell>
-      <TableHeaderCell @click="sortCategory" class="border-b-2 p-2 text-left" field="ucreated_at" :sort-field="sortField" :sort-direction="sortDirection">
+      <TableHeaderCell @click="sortCategory" class="border-b-2 p-2 text-left" field="created_at" :sort-field="sortField" :sort-direction="sortDirection">
         Created At
       </TableHeaderCell>
       <TableHeaderCell field="actions">
@@ -187,8 +187,8 @@ const emit = defineEmits(['clickEdit']);
 const perPage = ref(CATEGORIES_PER_PAGE)
 const search = ref ('')
 const categories = computed(() => store.state.categories)
-const sortField = ref('updated_at')
-const sortDirection = ref('desc')
+const sortField = ref('name')
+const sortDirection = ref('asc')
 
 onMounted(() => {
       try {

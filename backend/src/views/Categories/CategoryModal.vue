@@ -30,13 +30,13 @@
               </header>
               <form @submit.prevent="onSubmit">
                 <div class="bg-white px-4 pt-5 pb-4">
-                  <CustomInput type="text" class="mb-2" v-model="category.name" label="Category Name" />
+                  <CustomInput type="text" class="mb-2" v-model="category.name" label="Category Name" :errors="errors['name']"/>
 
                   <CustomInput type="select" :select-options="parentCategories" class="mb-2"
-                    v-model="category.parent_id" label="parent" />
+                    v-model="category.parent_id" label="parent" :errors="errors['parent_id']"/>
 
 
-                  <CustomInput type="checkbox" class="mb-2" v-model="category.active" label="Active" />
+                  <CustomInput type="checkbox" class="mb-2" v-model="category.active" label="Active" :errors="errors['active']"/>
                 </div>
                 <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                   <button type="submit"
@@ -74,6 +74,7 @@ import Spinner from "../../components/core/Spinner.vue";
 
 
 const loading = ref(false);
+const errors = ref({})
 
 const props = defineProps({
   modelValue: Boolean,
@@ -107,7 +108,12 @@ const parentCategories = computed(() => {
       }
       return true;
     })
-    .map(c => ({ key: c.id, text: c.name }))
+    .map(c => ({key: c.id, text: c.name}))
+      .sort((c1, c2) => {
+        if (c1.text < c2.text) return -1;
+        if (c1.text > c2.text) return 1;
+        return 0;
+      })
   ]
 })
 
@@ -123,6 +129,7 @@ onUpdated(() => {
 function closeModal() {
   show.value = false
   emit('close')
+  errors.value = {};
 }
 
 function onSubmit() {
@@ -138,6 +145,10 @@ function onSubmit() {
           closeModal()
         }
       })
+      .catch(err => {
+        loading.value = false;
+        errors.value = err.response.data.errors
+      })
   } else {
     store.dispatch('createCategory', category.value)
       .then(response => {
@@ -150,7 +161,7 @@ function onSubmit() {
       })
       .catch(err => {
         loading.value = false;
-        debugger;
+        errors.value = err.response.data.errors
       })
   }
 }

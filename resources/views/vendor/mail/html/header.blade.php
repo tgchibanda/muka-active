@@ -2,8 +2,8 @@
 <tr>
 <td class="header">
 <a href="{{ $url }}" style="display: inline-block;">
-@if (trim($slot) === 'Muka-Active')
-<img src="{{ asset('storage/images/logo-black.png') }}" class="logo" alt="Muka-Active Logo">
+@if (trim($slot) === 'MukaActive')
+<img src="{{ asset('storage/images/logo-black.png') }}" class="logo" alt="MukaActiveLogo">
 @else
 {{ $slot }}
 @endif

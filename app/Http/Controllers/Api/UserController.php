@@ -56,7 +56,7 @@ class UserController extends Controller
         $data['updated_by'] = $request->user()->id;
 
         if(!empty($data['password'])){
-        $data['password'] = Hash::make($data('password'));
+        $data['password'] = Hash::make($data['password']);
         }
 
         $user->update($data);

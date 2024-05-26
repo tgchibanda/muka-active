@@ -11,7 +11,8 @@
 11. run npm run dev
 
 
-Deployment
+
+<b>Deployment</b>
 
 Create domain eg example.com
 Setup subdomain eg admin.example.com
@@ -35,3 +36,29 @@ php artisan migrate --seed
 go to your local folder and run npm run build to get vite files
 remove /public/build from .gitignore
 commit your changes to remote server
+
+then run git pull origin main
+if you had some changes before just do git reset --hard HEAD first
+
+Now Deploy VueJs
+create a .env.production file in the backend on your local machine and put the url of your server eg https://example.com
+In the backend folder on local, run npm run build. This will create a dist folder
+go to your production server and create the folder in the public_html that has been created name it admin
+add the files that are in the dist folder into admin
+When you click reload on the server, it will look for the folders but we want to direct it to the index.html
+create the apache file in the admin folder on the production server and name it .htaccess
+paste the below
+            RewriteEngine On
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteCond %{REQUEST_FILENAME} !-d
+            RewriteRule . index.html
+run php artisan storage:link on production for our storage folder to be accessible in public
+then go on you local and search for filesystems.php under the config file of laravel application
+add visibility on disks array like below
+    'visibility' => 'public'
+then comit to git hub and pull to production server
+Configure stripe. Just copy them from local .env file
+Change webhook key for the production server.
+
+For email logo to show, slot name should be exactly like the production app name in the .env
+

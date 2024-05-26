@@ -11,6 +11,7 @@
 11. run npm run dev
 
 
+
 <b>Deployment</b>
 
 Create domain eg example.com
@@ -35,6 +36,7 @@ php artisan migrate --seed
 go to your local folder and run npm run build to get vite files
 remove /public/build from .gitignore
 commit your changes to remote server
+
 then run git pull origin main
 if you had some changes before just do git reset --hard HEAD first
 
@@ -59,3 +61,4 @@ Configure stripe. Just copy them from local .env file
 Change webhook key for the production server.
 
 For email logo to show, slot name should be exactly like the production app name in the .env
+

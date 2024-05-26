@@ -4,7 +4,7 @@
     }" @cart-change.window="cartItemsCount = $event.detail.count" class="flex justify-between bg-slate-800 shadow-md text-white">
     <div>
     <a href="{{ route('home') }}" class="flex items-center py-4 px-12">
-    <img src="{{ asset('logo-white.png') }}" alt="Logo" class="h-10 w-auto mr-2">
+    <img src="{{ asset('storage/images/logo-white.png') }}" alt="Logo" class="h-10 w-auto mr-2">
 </a>
 
 

@@ -5,7 +5,7 @@
 /** @var \Illuminate\View\ComponentAttributeBag  $attributes */
 ?>
 <?php
-$errorClasses = 'border-red-600 focus:border-red-600 ring-1 ring-red-600 focus:ring-red-600';
+$errorClasses = 'bg-purple-600 focus:bg-purple-600 ring-1 ring-red-600 focus:ring-red-600';
 $defaultClasses = '';
 $successClasses = 'border-emerald-500 focus:border-emerald-500 ring-1 ring-emerald-500 focus:ring-emerald-500';
 

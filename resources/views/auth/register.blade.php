@@ -4,7 +4,7 @@
     <h2 class="text-2xl font-semibold text-center mb-4">Create an account</h2>
     <p class="text-center text-gray-500 mb-3">
       or
-      <a href="{{ route('login') }}" class="text-sm text-purple-700 hover:text-purple-600">login with existing account</a>
+      <a href="{{ route('login') }}" class="text-sm text-yellow-700 hover:text-yellow-600">login with existing account</a>
     </p>
     @if (session('error'))
     <div class="py-2 px-3 bg-red-500 text-white mb-2 rounded">{{ session('error') }}</div>

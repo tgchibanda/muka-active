@@ -11,9 +11,11 @@ class ProductController extends Controller
 {
     public function index()
     {
+
         $query = Product::query();
         
         return $this->renderProducts($query);
+
     }
 
     public function view(Product $product)
@@ -28,6 +30,7 @@ class ProductController extends Controller
         $query = Product::query()
             ->select('products.*')
             ->join('product_categories AS pc', 'pc.product_id', 'products.id')
+
             ->whereIn('pc.category_id', array_map(fn ($c) => $c->id, $categories));
 
         return $this->renderProducts($query);
@@ -60,5 +63,7 @@ class ProductController extends Controller
         return view('product.index', [
             'products' => $products
         ]);
+
     }
 }
+

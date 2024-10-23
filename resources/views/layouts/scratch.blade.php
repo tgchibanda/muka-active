@@ -30,35 +30,35 @@
   <body>
     <header
       x-data="{mobileMenuOpen: false}"
-      class="flex justify-between bg-slate-800 shadow-md text-white"
+      class="flex justify-between bg-yellow-500 shadow-md text-white"
     >
       <div>
         <a href="/src" class="block py-navbar-item pl-5"> Logo </a>
       </div>
       <!-- Responsive Menu -->
       <div
-        class="block fixed z-10 top-0 bottom-0 height h-full w-[220px] transition-all bg-slate-900 md:hidden"
+        class="block fixed z-10 top-0 bottom-0 height h-full w-[220px] transition-all bg-yellow-300 md:hidden"
         :class="mobileMenuOpen ? 'left-0' : '-left-[220px]'"
       >
         <ul>
           <li>
             <a
               href="/src/index.html"
-              class="block py-2 px-3 transition-colors hover:bg-slate-800"
+              class="block py-2 px-3 transition-colors hover:bg-yellow-500"
               >Home</a
             >
           </li>
           <li>
             <a
               href="#"
-              class="block py-2 px-3 transition-colors hover:bg-slate-800"
+              class="block py-2 px-3 transition-colors hover:bg-yellow-500"
               >Categories</a
             >
           </li>
           <li>
             <a
               href="#"
-              class="block py-2 px-3 transition-colors hover:bg-slate-800"
+              class="block py-2 px-3 transition-colors hover:bg-yellow-500"
               >Something</a
             >
           </li>
@@ -67,7 +67,7 @@
           <li>
             <a
               href="/src/cart.html"
-              class="relative flex items-center justify-between py-2 px-3 transition-colors hover:bg-slate-800"
+              class="relative flex items-center justify-between py-2 px-3 transition-colors hover:bg-yellow-500"
             >
               <div class="flex items-center">
                 <svg
@@ -99,7 +99,7 @@
           <li x-data="{open: false}" class="relative">
             <a
               @click="open = !open"
-              class="cursor-pointer flex justify-between items-center py-2 px-3 hover:bg-slate-800"
+              class="cursor-pointer flex justify-between items-center py-2 px-3 hover:bg-yellow-500"
             >
               <span class="flex items-center">
                 <svg
@@ -134,12 +134,12 @@
             <ul
               x-show="open"
               x-transition
-              class="z-10 right-0 bg-slate-800 py-2"
+              class="z-10 right-0 bg-yellow-500 py-2"
             >
               <li>
                 <a
                   href="/src/profile.html"
-                  class="flex px-3 py-2 hover:bg-slate-900"
+                  class="flex px-3 py-2 hover:bg-yellow-300"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +161,7 @@
               <li>
                 <a
                   href="/src/watchlist.html"
-                  class="flex items-center px-3 py-2 hover:bg-slate-900"
+                  class="flex items-center px-3 py-2 hover:bg-yellow-300"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -187,10 +187,10 @@
                   ></small>
                 </a>
               </li>
-              <li class="hover:bg-slate-900">
+              <li class="hover:bg-yellow-300">
                 <a
                   href="/src/orders.html"
-                  class="flex items-center px-3 py-2 hover:bg-slate-900"
+                  class="flex items-center px-3 py-2 hover:bg-yellow-300"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -209,10 +209,10 @@
                   My Orders
                 </a>
               </li>
-              <li class="hover:bg-slate-900">
+              <li class="hover:bg-yellow-300">
                 <a
                   href="/src/logout.html"
-                  class="flex items-center px-3 py-2 hover:bg-slate-900"
+                  class="flex items-center px-3 py-2 hover:bg-yellow-300"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -236,7 +236,7 @@
           <li>
             <a
               href="/src/login.html"
-              class="flex items-center py-2 px-3 transition-colors hover:bg-slate-800"
+              class="flex items-center py-2 px-3 transition-colors hover:bg-yellow-500"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -271,21 +271,21 @@
           <li>
             <a
               href="/src/index.html"
-              class="block py-navbar-item px-navbar-item hover:bg-slate-900"
+              class="block py-navbar-item px-navbar-item hover:bg-yellow-300"
               >Home</a
             >
           </li>
           <li>
             <a
               href="#"
-              class="block py-navbar-item px-navbar-item hover:bg-slate-900"
+              class="block py-navbar-item px-navbar-item hover:bg-yellow-300"
               >Categories</a
             >
           </li>
           <li>
             <a
               href="#"
-              class="block py-navbar-item px-navbar-item hover:bg-slate-900"
+              class="block py-navbar-item px-navbar-item hover:bg-yellow-300"
               >Something</a
             >
           </li>
@@ -296,7 +296,7 @@
           <li>
             <a
               href="/src/cart.html"
-              class="relative inline-flex items-center py-navbar-item px-navbar-item hover:bg-slate-900"
+              class="relative inline-flex items-center py-navbar-item px-navbar-item hover:bg-yellow-300"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -325,7 +325,7 @@
           <li x-data="{open: false}" class="relative">
             <a
               @click="open = !open"
-              class="cursor-pointer flex items-center py-navbar-item px-navbar-item pr-5 hover:bg-slate-900"
+              class="cursor-pointer flex items-center py-navbar-item px-navbar-item pr-5 hover:bg-yellow-300"
             >
               <span class="flex items-center">
                 <svg
@@ -362,12 +362,12 @@
               x-show="open"
               x-transition
               x-cloak
-              class="absolute z-10 right-0 bg-slate-800 py-2 w-48"
+              class="absolute z-10 right-0 bg-yellow-500 py-2 w-48"
             >
               <li>
                 <a
                   href="/src/profile.html"
-                  class="flex px-3 py-2 hover:bg-slate-900"
+                  class="flex px-3 py-2 hover:bg-yellow-300"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -389,7 +389,7 @@
               <li>
                 <a
                   href="/src/watchlist.html"
-                  class="flex items-center justify-between px-3 py-2 hover:bg-slate-900"
+                  class="flex items-center justify-between px-3 py-2 hover:bg-yellow-300"
                 >
                   <div class="flex items-center">
                     <svg
@@ -420,7 +420,7 @@
               <li>
                 <a
                   href="/src/orders.html"
-                  class="flex px-3 py-2 hover:bg-slate-900"
+                  class="flex px-3 py-2 hover:bg-yellow-300"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -442,7 +442,7 @@
               <li>
                 <a
                   href="/src/logout.html"
-                  class="flex px-3 py-2 hover:bg-slate-900"
+                  class="flex px-3 py-2 hover:bg-yellow-300"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -466,7 +466,7 @@
           <li>
             <a
               href="/src/login.html"
-              class="flex items-center py-navbar-item px-navbar-item hover:bg-slate-900"
+              class="flex items-center py-navbar-item px-navbar-item hover:bg-yellow-300"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -529,7 +529,7 @@
             title: 'Logitech G502 HERO High Performance Wired Gaming Mouse, HERO 25K Sensor, 25,600 DPI, RGB, Adjustable Weights, 11',
             price: 17.99
           })"
-          class="border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white"
+          class="border border-1 border-gray-200 rounded-md hover:bg-red-600 transition-colors bg-white"
         >
           <a href="/src/product.html" class="block overflow-hidden">
             <img
@@ -550,7 +550,7 @@
           <div class="flex justify-between py-3 px-4">
             <button
               @click="addToWatchlist()"
-              class="w-10 h-10 rounded-full border border-1 border-purple-600 flex items-center justify-center hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
               :class="isInWatchlist(id) ? 'bg-purple-600 text-white' : 'text-purple-600'"
             >
               <svg
@@ -582,7 +582,7 @@
             title: 'Logitech G502 HERO High Performance Wired Gaming Mouse, HERO 25K Sensor, 25,600 DPI, RGB, Adjustable Weights, 11',
             price: 20
           })"
-          class="border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white"
+          class="border border-1 border-gray-200 rounded-md hover:bg-red-600 transition-colors bg-white"
         >
           <a href="/src/product.html" class="aspect-w-3 aspect-h-2 block overflow-hidden">
             <img
@@ -603,7 +603,7 @@
           <div class="flex justify-between py-3 px-4">
             <button
               @click="addToWatchlist()"
-              class="w-10 h-10 rounded-full border border-1 border-purple-600 flex items-center justify-center hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
               :class="isInWatchlist(id) ? 'bg-purple-600 text-white' : 'text-purple-600'"
             >
               <svg
@@ -629,7 +629,7 @@
         <!--/ Product Item -->
         <!-- Product Item -->
         <div
-          class="border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white"
+          class="border border-1 border-gray-200 rounded-md hover:bg-red-600 transition-colors bg-white"
         >
           <a href="/src/product.html" class="block overflow-hidden">
             <img
@@ -649,7 +649,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 border-purple-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -674,7 +674,7 @@
         <!--/ Product Item -->
         <!-- Product Item -->
         <div
-          class="border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white"
+          class="border border-1 border-gray-200 rounded-md hover:bg-red-600 transition-colors bg-white"
         >
           <a href="/src/product.html" class="block overflow-hidden">
             <img
@@ -694,7 +694,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 border-purple-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -717,7 +717,7 @@
         <!--/ Product Item -->
         <!-- Product Item -->
         <div
-          class="border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white"
+          class="border border-1 border-gray-200 rounded-md hover:bg-red-600 transition-colors bg-white"
         >
           <a href="/src/product.html" class="block overflow-hidden">
             <img
@@ -737,7 +737,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 border-purple-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -760,7 +760,7 @@
         <!--/ Product Item -->
         <!-- Product Item -->
         <div
-          class="border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white"
+          class="border border-1 border-gray-200 rounded-md hover:bg-red-600 transition-colors bg-white"
         >
           <a href="/src/product.html" class="block overflow-hidden">
             <img
@@ -780,7 +780,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 border-purple-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -803,7 +803,7 @@
         <!--/ Product Item -->
         <!-- Product Item -->
         <div
-          class="border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white"
+          class="border border-1 border-gray-200 rounded-md hover:bg-red-600 transition-colors bg-white"
         >
           <a href="/src/product.html" class="block overflow-hidden">
             <img
@@ -823,7 +823,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 border-purple-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -846,7 +846,7 @@
         <!--/ Product Item -->
         <!-- Product Item -->
         <div
-          class="border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white"
+          class="border border-1 border-gray-200 rounded-md hover:bg-red-600 transition-colors bg-white"
         >
           <a href="/src/product.html" class="block overflow-hidden">
             <img
@@ -866,7 +866,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 border-purple-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -889,7 +889,7 @@
         <!--/ Product Item -->
         <!-- Product Item -->
         <div
-          class="border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white"
+          class="border border-1 border-gray-200 rounded-md hover:bg-red-600 transition-colors bg-white"
         >
           <a href="/src/product.html" class="block overflow-hidden">
             <img
@@ -909,7 +909,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 border-purple-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -932,7 +932,7 @@
         <!--/ Product Item -->
         <!-- Product Item -->
         <div
-          class="border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white"
+          class="border border-1 border-gray-200 rounded-md hover:bg-red-600 transition-colors bg-white"
         >
           <a href="/src/product.html" class="block overflow-hidden">
             <img
@@ -952,7 +952,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 border-purple-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -975,7 +975,7 @@
         <!--/ Product Item -->
         <!-- Product Item -->
         <div
-          class="border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white"
+          class="border border-1 border-gray-200 rounded-md hover:bg-red-600 transition-colors bg-white"
         >
           <a href="/src/product.html" class="block overflow-hidden">
             <img
@@ -995,7 +995,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 border-purple-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

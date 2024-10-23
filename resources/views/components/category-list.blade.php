@@ -1,6 +1,6 @@
 @props(['categoryList'])
 
-<div {{ $attributes->merge(['class' => 'category-list flex text-white bg-slate-700']) }}>
+<div {{ $attributes->merge(['class' => 'category-list flex text-white bg-yellow-700']) }}>
     @if (!empty($categoryList))
     <div class="category-item relative">
         <a href="{{ route('home') }}" class="cursor-pointer block py-3 px-6 hover:bg-black/10" >All</a>

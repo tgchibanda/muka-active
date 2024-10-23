@@ -85,7 +85,7 @@
                             <a
                                 @click.prevent="activeImage = image"
                                 class="cursor-pointer w-[80px] h-[80px] border border-gray-300 hover:border-purple-500 flex items-center justify-center"
-                                :class="{'bg-red-600': activeImage === image}"
+                                :class="{'border-purple-600': activeImage === image}"
                             >
                                 <img :src="image" alt="" class="w-auto max-auto max-h-full"/>
                             </a>

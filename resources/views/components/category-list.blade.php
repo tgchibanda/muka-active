@@ -2,6 +2,9 @@
 
 <div {{ $attributes->merge(['class' => 'category-list flex text-white bg-yellow-700']) }}>
     @if (!empty($categoryList))
+    <div class="category-item relative">
+        <a href="{{ route('home') }}" class="cursor-pointer block py-3 px-6 hover:bg-black/10" >All</a>
+    </div>
         @foreach($categoryList as $category)
             <div class="category-item relative">
                 <a href="{{ route('byCategory', $category) }}" class="cursor-pointer block py-3 px-6 hover:bg-black/10">

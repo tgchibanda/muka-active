@@ -550,8 +550,8 @@
           <div class="flex justify-between py-3 px-4">
             <button
               @click="addToWatchlist()"
-              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
-              :class="isInWatchlist(id) ? 'bg-purple-600 text-white' : 'text-purple-600'"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center hover:bg-yellow-600 hover:text-white active:bg-yellow-800 transition-colors"
+              :class="isInWatchlist(id) ? 'bg-yellow-600 text-white' : 'text-yellow-600'"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -603,8 +603,8 @@
           <div class="flex justify-between py-3 px-4">
             <button
               @click="addToWatchlist()"
-              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
-              :class="isInWatchlist(id) ? 'bg-purple-600 text-white' : 'text-purple-600'"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center hover:bg-yellow-600 hover:text-white active:bg-yellow-800 transition-colors"
+              :class="isInWatchlist(id) ? 'bg-yellow-600 text-white' : 'text-yellow-600'"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -649,7 +649,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-yellow-600 hover:bg-yellow-600 hover:text-white active:bg-yellow-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -694,7 +694,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-yellow-600 hover:bg-yellow-600 hover:text-white active:bg-yellow-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -737,7 +737,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-yellow-600 hover:bg-yellow-600 hover:text-white active:bg-yellow-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -780,7 +780,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-yellow-600 hover:bg-yellow-600 hover:text-white active:bg-yellow-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -823,7 +823,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-yellow-600 hover:bg-yellow-600 hover:text-white active:bg-yellow-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -866,7 +866,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-yellow-600 hover:bg-yellow-600 hover:text-white active:bg-yellow-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -909,7 +909,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-yellow-600 hover:bg-yellow-600 hover:text-white active:bg-yellow-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -952,7 +952,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-yellow-600 hover:bg-yellow-600 hover:text-white active:bg-yellow-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -995,7 +995,7 @@
           </div>
           <div class="flex justify-between py-3 px-4">
             <button
-              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white active:bg-purple-800 transition-colors"
+              class="w-10 h-10 rounded-full border border-1 bg-red-600 flex items-center justify-center text-yellow-600 hover:bg-yellow-600 hover:text-white active:bg-yellow-800 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

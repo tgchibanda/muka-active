@@ -8,7 +8,7 @@
           or
           <a
             href="{{ route('register') }}"
-            class="text-sm text-purple-700 hover:text-purple-600"
+            class="text-sm text-yellow-700 hover:text-yellow-600"
             >create new account</a
           >
         </p>
@@ -41,11 +41,11 @@
               id="loginRememberMe"
               name="remember"
               type="checkbox"
-              class="mr-3 rounded border-gray-300 text-purple-500 focus:ring-purple-500"
+              class="mr-3 rounded border-gray-300 text-yellow-500 focus:ring-yellow-500"
             />
             <label for="loginRememberMe">Remember Me</label>
           </div>
-          <a href="{{ route('password.request') }}" class="text-sm text-purple-700 hover:text-purple-600">Forgot Password?</a>
+          <a href="{{ route('password.request') }}" class="text-sm text-yellow-700 hover:text-yellow-600">Forgot Password?</a>
         </div>
         <button
           class="btn-primary bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 w-full"

@@ -33,7 +33,7 @@ $categoryList = \App\Models\Category::getActiveAsTree();
         <x-input 
             x-model="selectedSort" 
             @change="updateUrl()"
-            type="select" name="sort" class="w-full focus:border-purple-600 focus:ring-purple-600 border-gray-300 rounded">
+            type="select" name="sort" class="w-full focus:border-yellow-600 focus:ring-yellow-600 border-gray-300 rounded">
             <option value="price">Price (ASC)</option>
             <option value="-price">Price (DESC)</option>
             <option value="title">Title (ASC)</option>
@@ -59,7 +59,7 @@ $categoryList = \App\Models\Category::getActiveAsTree();
                         'title' => $product->title,
                         'price' => $product->price,
                         'addToCartUrl' => route('cart.add', $product)
-                    ]) }})" class="border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white">
+                    ]) }})" class="border border-1 border-gray-200 rounded-md hover:border-yellow-600 transition-colors bg-white">
                 <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-2 block overflow-hidden">
                     <img src="{{ $product->image }}" alt="" class="object-cover rounded-lg hover:scale-105 hover:rotate-1 transition-transform" />
                 </a>

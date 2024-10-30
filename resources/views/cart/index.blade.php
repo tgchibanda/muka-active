@@ -55,13 +55,13 @@
                                                 min="1"
                                                 x-model="product.quantity"
                                                 @change="changeQuantity()"
-                                                class="ml-3 py-1 border-gray-200 focus:bg-red-600 focus:ring-purple-600 w-16"
+                                                class="ml-3 py-1 border-gray-200 focus:bg-red-600 focus:ring-yellow-600 w-16"
                                             />
                                         </div>
                                         <a
                                             href="#"
                                             @click.prevent="removeItemFromCart()"
-                                            class="text-purple-600 hover:text-purple-500"
+                                            class="text-yellow-600 hover:text-yellow-500"
                                         >Remove</a
                                         >
                                     </div>

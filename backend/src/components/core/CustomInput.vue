@@ -97,7 +97,7 @@ const inputClasses = computed(() => {
     cls.push('rounded-md')
   }
   if (props.errors && props.errors[0]) {
-    cls.push('bg-purple-600 focus:bg-purple-600')
+    cls.push('bg-yellow-600 focus:bg-yellow-600')
   }
   return cls.join(' ')
 })

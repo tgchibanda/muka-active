@@ -69,8 +69,8 @@
                       <h2 class="text-xl font-semibold mt-6 pb-2 border-b border-gray-300">Billing Address</h2>
 
                       <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                        <CustomInput v-model="customer.billingAddress.address1" label="Address 1"/>
-                        <CustomInput v-model="customer.billingAddress.address2" label="Address 2"/>
+                        <CustomInput v-model="customer.billingAddress.address1" label="House/Unit address"/>
+                        <CustomInput v-model="customer.billingAddress.address2" label="Suburb"/>
                         <CustomInput v-model="customer.billingAddress.city" label="City"/>
                         <CustomInput v-model="customer.billingAddress.zipcode" label="Zip Code"/>
 
@@ -86,8 +86,8 @@
                       <h2 class="text-xl font-semibold mt-6 pb-2 border-b border-gray-300">Shipping Address</h2>
 
                       <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                        <CustomInput  v-model="customer.shippingAddress.address1" label="Address 1"/>
-                        <CustomInput  v-model="customer.shippingAddress.address2" label="Address 2"/>
+                        <CustomInput  v-model="customer.shippingAddress.address1" label="House/Unit address"/>
+                        <CustomInput  v-model="customer.shippingAddress.address2" label="Suburb"/>
                         <CustomInput  v-model="customer.shippingAddress.city" label="City"/>
                         <CustomInput  v-model="customer.shippingAddress.zipcode" label="Zip Code"/>
 

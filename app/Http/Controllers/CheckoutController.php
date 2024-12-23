@@ -16,16 +16,18 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Mail\NewOrderEmail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Services\ShippingService;
 
 class CheckoutController extends Controller
 {
 
-    public function checkout(Request $request)
+    public function checkout(Request $request, ShippingService $shippingService)
     {
         /** @var \App\Models\User $user */
         $user = $request->user();
 
         $customer = $user->customer;
+        $post_code = $customer->shippingPostCode->zipcode;
         if (!$customer->billingAddress || !$customer->shippingAddress) {
             return redirect()->route('profile')->with('error', 'Please provide your address details first.');
         }
@@ -37,6 +39,7 @@ class CheckoutController extends Controller
         $orderItems = [];
         $lineItems = [];
         $totalPrice = 0;
+        $totalWeight = 0;
 
         DB::beginTransaction();
 
@@ -55,6 +58,7 @@ class CheckoutController extends Controller
         foreach ($products as $product) {
             $quantity = $cartItems[$product->id]['quantity'];
             $totalPrice += $product->price * $quantity;
+            $totalWeight += $product->weight * $quantity;
             $lineItems[] = [
                 'price_data' => [
                     'currency' => 'usd',
@@ -91,13 +95,25 @@ class CheckoutController extends Controller
 
         try {
 
+
+            
             // Create Order
             $orderData = [
                 'total_price' => $totalPrice,
+                'weight' => $totalWeight,
+                'post_code' => $post_code,
                 'status' => OrderStatus::Unpaid,
                 'created_by' => $user->id,
                 'updated_by' => $user->id,
             ];
+
+             // Calculate shipping cost
+            $shippingCost = $shippingService->calculateShippingCost($post_code, $totalWeight);
+            // Add the shipping cost and calculate the grand total
+            $orderData['shipping_cost'] = $shippingCost;
+            $grandTotal = $totalPrice + $shippingCost;
+            $orderData['grand_total'] = $grandTotal;
+
             $order = Order::create($orderData);
 
             // Create Order Items
@@ -170,37 +186,63 @@ class CheckoutController extends Controller
     }
 
     public function checkoutOrder(Order $order, Request $request)
-    {
-        \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
+{
+    \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
 
-        $lineItems = [];
-        foreach ($order->items as $item) {
-            $lineItems[] = [
-                'price_data' => [
-                    'currency' => 'usd',
-                    'product_data' => [
-                        'name' => $item->product->title,
-//                        'images' => [$product->image]
-                    ],
-                    'unit_amount' => $item->unit_price * 100,
+    $lineItems = [];
+    
+    // Loop through the order items to create line items for each product
+    foreach ($order->items as $item) {
+        $lineItems[] = [
+            'price_data' => [
+                'currency' => 'aud',
+                'product_data' => [
+                    'name' => $item->product->title,
+//                    'images' => [$product->image] // If you have images, you can add them here
                 ],
-                'quantity' => $item->quantity,
-            ];
-        }
-
-        $session = \Stripe\Checkout\Session::create([
-            'line_items' => $lineItems,
-            'mode' => 'payment',
-            'success_url' => route('checkout.success', [], true) . '?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => route('checkout.failure', [], true),
-        ]);
-
-        $order->payment->session_id = $session->id;
-        $order->payment->save();
-
-
-        return redirect($session->url);
+                'unit_amount' => $item->unit_price * 100, // Stripe expects amounts in cents
+            ],
+            'quantity' => $item->quantity,
+        ];
     }
+
+    // Calculate the shipping cost
+    $shippingCost = $order->shipping_cost; // Assuming shipping cost is already set in the order
+
+    // Add the shipping cost as a separate line item
+    $lineItems[] = [
+        'price_data' => [
+            'currency' => 'aud',
+            'product_data' => [
+                'name' => 'Shipping', // This is the shipping label that will appear in the checkout
+            ],
+            'unit_amount' => $shippingCost * 100, // Stripe expects amounts in cents
+        ],
+        'quantity' => 1, // Only one shipping charge
+    ];
+
+    // Create the Stripe Checkout session
+    $session = \Stripe\Checkout\Session::create([
+        'line_items' => $lineItems,
+        'mode' => 'payment',
+        'success_url' => route('checkout.success', [], true) . '?session_id={CHECKOUT_SESSION_ID}',
+        'cancel_url' => route('checkout.failure', [], true),
+        'payment_intent_data' => [
+            'metadata' => [
+                'order_id' => $order->id,
+                'grand_total' => $order->grand_total, // Optionally pass the grand total in metadata
+            ],
+        ],
+    ]);
+
+    // Save session ID for later use (e.g., for payment verification)
+    $order->payment->session_id = $session->id;
+    $order->payment->save();
+
+    // Redirect to the Stripe Checkout session
+    return redirect($session->url);
+}
+
 
     public function webhook()
     {

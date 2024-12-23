@@ -30,7 +30,7 @@ class CheckoutController extends Controller
             return redirect()->route('profile')->with('error', 'Please provide your address details first.');
         }
 
-        \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 
         [$products, $cartItems] = Cart::getProductsAndCartItems();
 

@@ -42,7 +42,7 @@
         <UsersIcon class="w-5"/>
       </span>
       <span class="text-xs">
-        Users
+        Administrators
       </span>
     </router-link>
     <router-link :to="{name: 'app.customers'}"

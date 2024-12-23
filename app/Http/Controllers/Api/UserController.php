@@ -21,6 +21,10 @@ class UserController extends Controller
         $sortField = request('sort_field', 'updated_at');
         $sortDirection = request('sort_direction', 'desc');
         $query = User::query();
+
+        // Add condition to filter users who are admins
+        $query->where('is_admin', 1);
+        
         $query->orderBy($sortField, $sortDirection);
         if ($search){
             $query->where('name', 'like', "%{$search}%")

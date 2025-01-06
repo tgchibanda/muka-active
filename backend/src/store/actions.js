@@ -121,6 +121,7 @@ export function createProduct({commit}, product) {
   if (product.images && product.images.length) {
     const form = new FormData();
     form.append('title', product.title);
+    form.append('weight', product.weight);
     product.images.forEach(im => form.append('images[]', im))
     form.append('description', product.description || '');
     form.append('published', product.published ? 1 : 0);
@@ -144,6 +145,7 @@ export function updateProduct({commit}, product) {
     const form = new FormData();
     form.append('id', product.id);
     form.append('title', product.title);
+    form.append('weight', product.weight);
     product.images.forEach(im => form.append(`images[${im.id}]`, im))
     if (product.deleted_images) {
       product.deleted_images.forEach(id => form.append('deleted_images[]', id))

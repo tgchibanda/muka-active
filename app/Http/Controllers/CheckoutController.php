@@ -22,130 +22,139 @@ class CheckoutController extends Controller
 {
 
     public function checkout(Request $request, ShippingService $shippingService)
-    {
-        /** @var \App\Models\User $user */
-        $user = $request->user();
+{
+    /** @var \App\Models\User $user */
+    $user = $request->user();
 
-        $customer = $user->customer;
-        $post_code = $customer->shippingPostCode->zipcode;
-        if (!$customer->billingAddress || !$customer->shippingAddress) {
-            return redirect()->route('profile')->with('error', 'Please provide your address details first.');
-        }
-
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-
-        [$products, $cartItems] = Cart::getProductsAndCartItems();
-
-        $orderItems = [];
-        $lineItems = [];
-        $totalPrice = 0;
-        $totalWeight = 0;
-
-        DB::beginTransaction();
-
-        foreach ($products as $product) {
-            $quantity = $cartItems[$product->id]['quantity'];
-            if ($product->quantity !== null && $product->quantity < $quantity) {
-                $message = match ($product->quantity) {
-                    0 => 'The product "'.$product->title.'" is out of stock',
-                    1 => 'There is only one item left for product "'.$product->title,
-                    default => 'There are only ' . $product->quantity . ' items left for product "'.$product->title,
-                };
-                return redirect()->back()->with('error', $message);
-            }
-        }
-
-        foreach ($products as $product) {
-            $quantity = $cartItems[$product->id]['quantity'];
-            $totalPrice += $product->price * $quantity;
-            $totalWeight += $product->weight * $quantity;
-            $lineItems[] = [
-                'price_data' => [
-                    'currency' => 'usd',
-                    'product_data' => [
-                        'name' => $product->title,
-                        'images' => $product->image ? [$product->image] : []
-                    ],
-                    'unit_amount' => $product->price * 100,
-                ],
-                'quantity' => $quantity,
-            ];
-            $orderItems[] = [
-                'product_id' => $product->id,
-                'quantity' => $quantity,
-                'unit_price' => $product->price
-            ];
-
-            if ($product->quantity !== null) {
-                $product->quantity -= $quantity;
-                $product->save();
-            }
-        }
-//        dd(route('checkout.failure', [], true));
-
-//        dd(route('checkout.success', [], true) . '?session_id={CHECKOUT_SESSION_ID}');
-
-        $session = \Stripe\Checkout\Session::create([
-            'line_items' => $lineItems,
-            'mode' => 'payment',
-            'customer_creation' => 'always',
-            'success_url' => route('checkout.success', [], true) . '?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => route('checkout.failure', [], true),
-        ]);
-
-        try {
-
-
-            
-            // Create Order
-            $orderData = [
-                'total_price' => $totalPrice,
-                'weight' => $totalWeight,
-                'post_code' => $post_code,
-                'status' => OrderStatus::Unpaid,
-                'created_by' => $user->id,
-                'updated_by' => $user->id,
-            ];
-
-             // Calculate shipping cost
-            $shippingCost = $shippingService->calculateShippingCost($post_code, $totalWeight);
-            // Add the shipping cost and calculate the grand total
-            $orderData['shipping_cost'] = $shippingCost;
-            $grandTotal = $totalPrice + $shippingCost;
-            $orderData['grand_total'] = $grandTotal;
-
-            $order = Order::create($orderData);
-
-            // Create Order Items
-            foreach ($orderItems as $orderItem) {
-                $orderItem['order_id'] = $order->id;
-                OrderItem::create($orderItem);
-            }
-
-            // Create Payment
-            $paymentData = [
-                'order_id' => $order->id,
-                'amount' => $totalPrice,
-                'status' => PaymentStatus::Pending,
-                'type' => 'cc',
-                'created_by' => $user->id,
-                'updated_by' => $user->id,
-                'session_id' => $session->id
-            ];
-            Payment::create($paymentData);
-
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            Log::critical(__METHOD__ . ' method does not work. '. $e->getMessage());
-            throw $e;
-        }
-
-        DB::commit();
-        CartItem::where(['user_id' => $user->id])->delete();
-
-        return redirect($session->url);
+    $customer = $user->customer;
+    $post_code = $customer->shippingPostCode->zipcode;
+    if (!$customer->billingAddress || !$customer->shippingAddress) {
+        return redirect()->route('profile')->with('error', 'Please provide your address details first.');
     }
+
+    \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+    [$products, $cartItems] = Cart::getProductsAndCartItems();
+
+    $orderItems = [];
+    $lineItems = [];
+    $totalPrice = 0;
+    $totalWeight = 0;
+
+    DB::beginTransaction();
+
+    foreach ($products as $product) {
+        $quantity = $cartItems[$product->id]['quantity'];
+        if ($product->quantity !== null && $product->quantity < $quantity) {
+            $message = match ($product->quantity) {
+                0 => 'The product "' . $product->title . '" is out of stock',
+                1 => 'There is only one item left for product "' . $product->title,
+                default => 'There are only ' . $product->quantity . ' items left for product "' . $product->title,
+            };
+            return redirect()->back()->with('error', $message);
+        }
+    }
+
+    foreach ($products as $product) {
+        $quantity = $cartItems[$product->id]['quantity'];
+        $totalPrice += $product->price * $quantity;
+        $totalWeight += ($product->weight * $quantity);
+        $lineItems[] = [
+            'price_data' => [
+                'currency' => 'aud',
+                'product_data' => [
+                    'name' => $product->title,
+                    'images' => $product->image ? [$product->image] : [],
+                ],
+                'unit_amount' => $product->price * 100,
+            ],
+            'quantity' => $quantity,
+        ];
+        $orderItems[] = [
+            'product_id' => $product->id,
+            'quantity' => $quantity,
+            'unit_price' => $product->price,
+        ];
+
+        if ($product->quantity !== null) {
+            $product->quantity -= $quantity;
+            $product->save();
+        }
+    }
+
+    // Calculate shipping cost
+    $shippingCost = $shippingService->calculateShippingCost($post_code, $totalWeight);
+
+    // Add the shipping cost as a line item
+    $lineItems[] = [
+        'price_data' => [
+            'currency' => 'aud',
+            'product_data' => [
+                'name' => 'Shipping',
+            ],
+            'unit_amount' => $shippingCost * 100, // Convert to cents
+        ],
+        'quantity' => 1, // Single shipping charge
+    ];
+
+    // Calculate the grand total
+    $grandTotal = $totalPrice + $shippingCost;
+
+    $session = \Stripe\Checkout\Session::create([
+        'line_items' => $lineItems,
+        'mode' => 'payment',
+        'customer_creation' => 'always',
+        'success_url' => route('checkout.success', [], true) . '?session_id={CHECKOUT_SESSION_ID}',
+        'cancel_url' => route('checkout.failure', [], true),
+    ]);
+
+    try {
+        // Create Order
+        $orderData = [
+            'total_price' => $totalPrice,
+            'weight' => $totalWeight,
+            'post_code' => $post_code,
+            'shipping_cost' => $shippingCost,
+            'grand_total' => $grandTotal,
+            'status' => OrderStatus::Unpaid,
+            'created_by' => $user->id,
+            'updated_by' => $user->id,
+        ];
+
+        $order = Order::create($orderData);
+
+        // Create Order Items
+        foreach ($orderItems as $orderItem) {
+            $orderItem['order_id'] = $order->id;
+            OrderItem::create($orderItem);
+        }
+
+        // Create Payment
+        $paymentData = [
+            'order_id' => $order->id,
+            'shipping_cost' => $shippingCost,
+            'grand_total' => $grandTotal,
+            'amount' => $totalPrice,
+            'status' => PaymentStatus::Pending,
+            'type' => 'cc',
+            'created_by' => $user->id,
+            'updated_by' => $user->id,
+            'session_id' => $session->id,
+        ];
+        Payment::create($paymentData);
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        Log::critical(__METHOD__ . ' method does not work. ' . $e->getMessage());
+        throw $e;
+    }
+
+    DB::commit();
+    CartItem::where(['user_id' => $user->id])->delete();
+
+    return redirect($session->url);
+}
+
 
     public function success(Request $request)
     {
@@ -190,7 +199,7 @@ class CheckoutController extends Controller
     \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
 
     $lineItems = [];
-    
+    //dd($order);
     // Loop through the order items to create line items for each product
     foreach ($order->items as $item) {
         $lineItems[] = [
@@ -198,7 +207,7 @@ class CheckoutController extends Controller
                 'currency' => 'aud',
                 'product_data' => [
                     'name' => $item->product->title,
-//                    'images' => [$product->image] // If you have images, you can add them here
+                    'images' => [$item->product->image] // If you have images, you can add them here
                 ],
                 'unit_amount' => $item->unit_price * 100, // Stripe expects amounts in cents
             ],

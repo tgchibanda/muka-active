@@ -16,6 +16,7 @@
                         'slug' => $product->slug,
                         'image' => $product->image,
                         'title' => $product->title,
+                        'weight' => $product->weight,
                         'price' => $product->price,
                         'quantity' => $cartItems[$product->id]['quantity'],
                         'href' => route('product.view', $product->slug),

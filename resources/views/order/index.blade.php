@@ -13,6 +13,8 @@
                     <th class="text-left p-2">Date</th>
                     <th class="text-left p-2">Status</th>
                     <th class="text-left p-2">SubTotal</th>
+                    <th class="text-left p-2">Shipping</th>
+                    <th class="text-left p-2">GrandTotal</th>
                     <th class="text-left p-2">Items</th>
                     <th class="text-left p-2">Actions</th>
                 </tr>
@@ -37,6 +39,8 @@
                             >
                         </td>
                         <td class="py-1 px-2">${{$order->total_price}}</td>
+                        <td class="py-1 px-2">${{$order->shipping_cost}}</td>
+                        <td class="py-1 px-2">${{$order->grand_total}}</td>
                         <td class="py-1 px-2 whitespace-nowrap">{{$order->items_count}} item(s)</td>
                         <td class="py-1 px-2 flex gap-2 w-[100px]">
                             @if (!$order->isPaid())

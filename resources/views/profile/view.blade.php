@@ -63,10 +63,10 @@
                     <h2 class="text-xl mt-6 font-semibold mb-2">Billing Address</h2>
                     <div class="grid grid-cols-2 gap-3 mb-3">
                         <div>
-                            <x-input type="text" name="billing[address1]" x-model="billingAddress.address1" placeholder="Address 1" class="w-full focus:bg-red-600 focus:ring-yellow-600 border-gray-300 rounded" />
+                            <x-input type="text" name="billing[address1]" x-model="billingAddress.address1" placeholder="House/Unit address" class="w-full focus:bg-red-600 focus:ring-yellow-600 border-gray-300 rounded" />
                         </div>
                         <div>
-                            <x-input type="text" name="billing[address2]" x-model="billingAddress.address2" placeholder="Address 2" class="w-full focus:bg-red-600 focus:ring-yellow-600 border-gray-300 rounded" />
+                            <x-input type="text" name="billing[address2]" x-model="billingAddress.address2" placeholder="Suburb" class="w-full focus:bg-red-600 focus:ring-yellow-600 border-gray-300 rounded" />
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-3 mb-3">
@@ -109,10 +109,10 @@
                     </div>
                     <div class="grid grid-cols-2 gap-3 mb-3">
                         <div>
-                            <x-input type="text" name="shipping[address1]" x-model="shippingAddress.address1" placeholder="Address 1" class="w-full focus:bg-red-600 focus:ring-yellow-600 border-gray-300 rounded" />
+                            <x-input type="text" name="shipping[address1]" x-model="shippingAddress.address1" placeholder="House/Unit address" class="w-full focus:bg-red-600 focus:ring-yellow-600 border-gray-300 rounded" />
                         </div>
                         <div>
-                            <x-input type="text" name="shipping[address2]" x-model="shippingAddress.address2" placeholder="Address 2" class="w-full focus:bg-red-600 focus:ring-yellow-600 border-gray-300 rounded" />
+                            <x-input type="text" name="shipping[address2]" x-model="shippingAddress.address2" placeholder="Suburb" class="w-full focus:bg-red-600 focus:ring-yellow-600 border-gray-300 rounded" />
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-3 mb-3">

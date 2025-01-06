@@ -4,6 +4,7 @@
                     'slug' => $product->slug,
                     'image' => $product->image ?: '/img/noimage.png',
                     'title' => $product->title,
+                    'weight' => $product->weight,
                     'price' => $product->price,
                     'quantity' => $product->quantity,
                     'addToCartUrl' => route('cart.add', $product)
@@ -91,7 +92,7 @@
                             </a>
                         </template>
                     </div>
-                </div>
+                </div>s
             </div>
             <div class="lg:col-span-2">
                 <h1 class="text-lg font-semibold">

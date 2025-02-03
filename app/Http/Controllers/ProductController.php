@@ -18,6 +18,11 @@ class ProductController extends Controller
 
     }
 
+    public function shipping_policy()
+    {
+        return view('info.shipping_policy');
+    }
+
     public function view(Product $product)
     {
         return view('product.view', ['product' => $product]);

@@ -17,6 +17,7 @@ use App\Mail\NewOrderEmail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Services\ShippingService;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -231,7 +232,9 @@ class CheckoutController extends Controller
     ];
 
     // Create the Stripe Checkout session
+    $user = Auth::user();
     $session = \Stripe\Checkout\Session::create([
+        'customer' => $user->id,
         'line_items' => $lineItems,
         'mode' => 'payment',
         'success_url' => route('checkout.success', [], true) . '?session_id={CHECKOUT_SESSION_ID}',

@@ -24,6 +24,8 @@ class OrderResource extends JsonResource
             'status' => $this->status,
             'total_price' => $this->total_price,
             'number_of_items' => $this->items()->count(),
+            'shipping_cost' => $this->shipping_cost,
+            'grand_total' => $this->grand_total,
             'items' => $this->items->map(fn($item) => [
                 'id' => $item->id,
                 'unit_price' => $item->unit_price,

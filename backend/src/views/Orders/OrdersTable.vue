@@ -29,7 +29,13 @@
             Customer
           </TableHeaderCell>
           <TableHeaderCell @click="sortOrder" class="border-b-2 p-2 text-left" field="total_price" :sort-field="sortField" :sort-direction="sortDirection">
-            Price
+           Product Price
+          </TableHeaderCell>
+          <TableHeaderCell class="border-b-2 p-2 text-left" field="shipping_price">
+           Shipping Cost
+          </TableHeaderCell>
+          <TableHeaderCell class="border-b-2 p-2 text-left" field="grand_price">
+           Grand Total
           </TableHeaderCell>
           <TableHeaderCell class="border-b-2 p-2 text-left" field="status" :sort-field="sortField" :sort-direction="sortDirection">
             Status
@@ -59,7 +65,15 @@
 
           <td class="border-b p-2">
             {{ order.total_price }}
-          </td>  
+          </td>
+          
+          <td class="border-b p-2">
+            {{ order.shipping_cost }}
+          </td>
+
+          <td class="border-b p-2">
+            {{ order.grand_total }}
+          </td>
 
           <td class="border-b p-2 ">
             <OrderStatus :order="order" />

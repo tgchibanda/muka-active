@@ -40,6 +40,8 @@ class CheckoutController extends Controller
     $orderItems = [];
     $lineItems = [];
     $totalPrice = 0;
+    $shippingCost = [];
+    $grandTotal = 0;
     $totalWeight = 0;
 
     DB::beginTransaction();

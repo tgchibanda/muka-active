@@ -32,6 +32,8 @@ class ProductRequest extends FormRequest
             'quantity' => ['nullable', 'numeric', 'min:0'],
             'published' => ['required', 'boolean'],
             'description' => ['nullable', 'string'],
+            'product_color' => ['nullable', 'array'], // Ensure it's either null or an array
+            'product_color.*' => ['nullable', 'string'], // Each item in the array must be a string
         ]; 
     }
 }

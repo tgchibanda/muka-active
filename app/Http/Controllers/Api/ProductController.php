@@ -113,14 +113,13 @@ class ProductController extends Controller
             $data['product_color'] = implode(',', $productColors);
         }
 
+        $product->update($data);
 
         $this->saveCategories($categories, $product);
         $this->saveImages($images, $imagePositions, $product);
         if (count($deletedImages) > 0) {
             $this->deleteImages($deletedImages, $product);
         }
-
-        $product->update($data);
 
         return new ProductResource($product);
     }

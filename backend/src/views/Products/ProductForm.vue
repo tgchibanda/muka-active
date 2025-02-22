@@ -13,6 +13,7 @@
         <div class="col-span-2 px-4 pt-5 pb-4">
           <CustomInput class="mb-2" v-model="product.title" label="Product Title" :errors="errors['title']"/>
           <CustomInput class="mb-2" v-model="product.weight" label="Product Weight (Kgs)" :errors="errors['weight']"/>
+          <TagsInput v-model="product.product_color" />
           <CustomInput type="richtext" class="mb-2" v-model="product.description" label="Description" :errors="errors['description']"/>
           <CustomInput type="number" class="mb-2" v-model="product.price" label="Price" prepend="$" :errors="errors['price']"/>
           <CustomInput type="number" class="mb-2" v-model="product.quantity" label="Quantity" :errors="errors['quantity']"/>
@@ -51,6 +52,7 @@
 <script setup>
 import {onMounted, ref} from 'vue'
 import CustomInput from "../../components/core/CustomInput.vue";
+import TagsInput from "../../components/core/TagsInput.vue";
 import store from "../../store/index.js";
 import Spinner from "../../components/core/Spinner.vue";
 import {useRoute, useRouter} from "vue-router";
@@ -68,6 +70,7 @@ const product = ref({
   id: null,
   title: null,
   weight: null,
+  product_color: [],
   images: [],
   deleted_images: [],
   image_positions: {},
@@ -85,15 +88,22 @@ const options = ref([])
 
 const emit = defineEmits(['update:modelValue', 'close'])
 
-onMounted(() => {
+
+  onMounted(() => {
   if (route.params.id) {
     loading.value = true
     store.dispatch('getProduct', route.params.id)
       .then((response) => {
         loading.value = false;
-        product.value = response.data
+        product.value = response.data;
+
+        // Convert the comma-separated string of product_color into an array
+        if (product.value.product_color) {
+          product.value.product_color = product.value.product_color.split(','); // Convert to array
+        }
       })
   }
+
 
   axiosClient.get('/categories/tree')
     .then(result => {

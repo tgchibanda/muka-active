@@ -54,6 +54,17 @@ class ProductController extends Controller
         $imagePositions = $data['image_positions'] ?? [];
         $categories = $data['categories'] ?? [];
 
+        // If 'product_color' is provided and not null, ensure it's an array
+        $productColors = $data['product_color'] ?? null;
+        if ($productColors && !is_array($productColors)) {
+            return response()->json(['error' => 'product_color must be an array'], 400);
+        }
+
+        // Convert product_color to comma-separated string
+        if ($productColors) {
+            $data['product_color'] = implode(',', $productColors);
+        }
+
         $product = Product::create($data);
 
         $this->saveCategories($categories, $product);
@@ -90,6 +101,18 @@ class ProductController extends Controller
         $deletedImages = $data['deleted_images'] ?? [];
         $imagePositions = $data['image_positions'] ?? [];
         $categories = $data['categories'] ?? [];
+
+        // If 'product_color' is provided and not null, ensure it's an array
+        $productColors = $data['product_color'] ?? null;
+        if ($productColors && !is_array($productColors)) {
+            return response()->json(['error' => 'product_color must be an array'], 400);
+        }
+
+        // Convert product_color to comma-separated string
+        if ($productColors) {
+            $data['product_color'] = implode(',', $productColors);
+        }
+
 
         $this->saveCategories($categories, $product);
         $this->saveImages($images, $imagePositions, $product);

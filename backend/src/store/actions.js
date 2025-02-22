@@ -122,6 +122,10 @@ export function createProduct({commit}, product) {
     const form = new FormData();
     form.append('title', product.title);
     form.append('weight', product.weight);
+      // Append colors as an array
+      product.value.product_color.forEach(color => {
+        form.append('product_color[]', color); // '[]' to indicate multiple values
+      });
     product.images.forEach(im => form.append('images[]', im))
     form.append('description', product.description || '');
     form.append('published', product.published ? 1 : 0);
@@ -146,6 +150,10 @@ export function updateProduct({commit}, product) {
     form.append('id', product.id);
     form.append('title', product.title);
     form.append('weight', product.weight);
+    // Append colors as an array
+    product.value.product_color.forEach(color => {
+      form.append('product_color[]', color); // '[]' to indicate multiple values
+    });
     product.images.forEach(im => form.append(`images[${im.id}]`, im))
     if (product.deleted_images) {
       product.deleted_images.forEach(id => form.append('deleted_images[]', id))

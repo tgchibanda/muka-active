@@ -18,6 +18,16 @@ class ProductController extends Controller
 
     }
 
+    public function about_us()
+    {
+        return view('info.about_us');
+    }
+
+    public function contact_us()
+    {
+        return view('info.contact_us');
+    }
+
     public function shipping_policy()
     {
         return view('info.shipping_policy');

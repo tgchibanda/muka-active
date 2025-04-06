@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guestOrVerified'])->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('home');
+    Route::get('/about-us', [ProductController::class, 'about_us'])->name('about_us');
+    Route::get('/contact-send', [ProductController::class, 'contact_send'])->name('contact.send');
+    Route::get('/contact-us', [ProductController::class, 'contact_us'])->name('contact_us');
     Route::get('/shipping-policy', [ProductController::class, 'shipping_policy'])->name('shipping_policy');
     Route::get('/category/{category:slug}', [ProductController::class, 'byCategory'])->name('byCategory');
     Route::get('/product/{product:slug}', [ProductController::class, 'view'])->name('product.view');

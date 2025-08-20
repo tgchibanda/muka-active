@@ -21,16 +21,19 @@ $categoryList = \App\Models\Category::getActiveAsTree();
         <div class="text-lg text-gray-700 md:w-1/2">
             <p class="mb-4">
                 <strong>Mt Isa Beehive Products</strong> is a family-owned natural honey and beekeeping business based in Mount Isa, Queensland.
-                Founded by <strong>Cody and his mum Robin</strong>, we manage over <strong>80 hives</strong> producing premium homemade bee-based products.
+                Founded by <strong>Cody and his mother Robin</strong>. We farm our hives in and around Mount Isa town. It is a unique quality of 
+                honey as there is no hoticulture, no pesticides in the area as it is a cattle country. The bees are foraging for native
+                flora. Conditions in Mount Isa are like the Sahara desert, with seasonal rainfall which can be very challenging but does provide a 
+                very good quality grade of honey. 
             </p>
             <p class="mb-4">
-                We proudly offer <strong>raw honey, healing balms, beeswax furniture polish, leather wax</strong> and more — all handmade with care using natural ingredients.
+                We proudly offer <strong>raw honey, healing balms and salves</strong> and more — all handmade with care using natural ingredients.
             </p>
             <p class="mb-4">
-                As licensed beekeepers (<strong>Licence: H1457</strong>), we also provide:
+                As licensed beekeepers, we also provide:
                 <ul class="list-disc ml-6 mt-2">
                     <li>Beehive Removal Services</li>
-                    <li>Pollination Services for local farms and gardens</li>
+                    <li>Pollination Services for local farms, mine sites and gardens</li>
                 </ul>
             </p>
             <p>
